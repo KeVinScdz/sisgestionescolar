@@ -138,7 +138,7 @@ $pdf->write2DBarcode($QR, 'QRCODE,L', 175, 40, 30, 30, $style);
 
 $QR2 ='Este recibo de caja es verificado por el sistema de pago de la Unidad Eduactiva '.$nombre_institucion.',
 por el pago del mes de '.$mes_pagado.' por la suma de '.$monto_pagado.' en '.$fechaHora.'';
-$pdf->write2DBarcode($QR2, 'QRCODE,L', 175, 160, 30, 30, $style);
+$pdf->write2DBarcode($QR2, 'QRCODE,L', 175, 175, 30, 30, $style);
 
 
 // Set some content to print
