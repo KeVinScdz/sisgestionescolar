@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: HILARIWEB
- * Date: 8/1/2024
- * Time: 20:35
- */
+
 include ('../../../../app/config.php');
 
 $id_config_institucion = $_POST['id_config_institucion'];

@@ -14,7 +14,7 @@ include ('../../app/controllers/administrativos/listado_de_administrativos.php')
     <div class="content">
         <div class="container">
             <div class="row">
-                <h1>Listados del personal adminsitrativo</h1>
+                <h1>Listados del personal adminstrativo</h1>
             </div>
             <br>
             <div class="row">
