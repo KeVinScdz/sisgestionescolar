@@ -103,7 +103,7 @@ include ('../../app/controllers/administrativos/datos_administrativos.php');
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="">fecha y hora de creacion</label>
+                                            <label for="">fecha y hora de la creacion</label>
                                             <p>
                                                 <?=$fyh_creacion;?>
                                             </p>

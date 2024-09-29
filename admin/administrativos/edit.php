@@ -66,7 +66,7 @@ include ('../../app/controllers/roles/listado_de_roles.php');
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="">fecha de nacimiento</label>
+                                            <label for="">fecha del nacimiento</label>
                                             <input type="date" name="fecha_nacimiento" value="<?=$fecha_nacimiento?>" class="form-control" required>
                                         </div>
                                     </div>
