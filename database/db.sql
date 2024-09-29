@@ -167,9 +167,9 @@ CREATE TABLE niveles (
   nivel          VARCHAR (255) NOT NULL,
   turno          VARCHAR (255) NOT NULL,
 
-  fyh_creacion   DATETIME NULL,
+  fyh_creacion      DATETIME NULL,
   fyh_actualizacion DATETIME NULL,
-  estado        VARCHAR (11),
+  estado            VARCHAR (11),
 
   FOREIGN KEY (gestion_id) REFERENCES gestiones (id_gestion) on delete no action on update cascade
 
