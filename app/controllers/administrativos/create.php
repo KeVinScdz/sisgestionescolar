@@ -7,9 +7,10 @@ $apellidos = $_POST['apellidos'];
 $ci = $_POST['ci'];
 $email = $_POST['email'];
 $fecha_nacimiento = $_POST['fecha_nacimiento'];
+$direccion = $_POST['direccion'];
 $celular = $_POST['celular'];
 $profesion = $_POST['profesion'];
-$direccion = $_POST['direccion'];
+
 
 
 

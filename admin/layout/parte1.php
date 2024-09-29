@@ -272,15 +272,55 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </a>
                             </li>
                         </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?=APP_URL;?>/admin/docentes/asignacion.php" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Asignacion de materias</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-
-
-
-
-
-
-
-
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fas"><i class="bi bi-person-video"></i></i>
+                            <p>
+                                Estudiantes
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                                <a href="<?=APP_URL;?>/admin/inscripciones" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Inscripcion</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?=APP_URL;?>/admin/estudiantes" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Listado de estudiantes</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fas"><i class="bi bi-cash-coin"></i></i>
+                            <p>
+                                Pagos
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?=APP_URL;?>/admin/pagos" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Realizar pago</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
                     <li class="nav-item">
                         <a href="<?=APP_URL;?>/login/logout.php" class="nav-link" style="background-color: #eb2d14;color: black">

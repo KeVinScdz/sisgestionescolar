@@ -22,7 +22,7 @@ include ('../../app/controllers/roles/listado_de_roles.php');
                             <h3 class="card-title">Llene los datos</h3>
                         </div>
                         <div class="card-body">
-                            <form action="<?=APP_URL;?>/app/controllers/docente/create.php" method="post">
+                            <form action="<?=APP_URL;?>/app/controllers/docentes/create.php" method="post">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
@@ -32,7 +32,7 @@ include ('../../app/controllers/roles/listado_de_roles.php');
                                                 <select name="rol_id" id="" class="form-control">
                                                     <?php
                                                     foreach ($roles as $role){ ?>
-                                                        <option value="<?=$role['id_rol'];?>" <?=$role['nombre_rol']=="DOCENTE" ? 'selected': ''?> disabled><?=$role['nombre_rol'];?></option>
+                                                        <option value="<?=$role['id_rol'];?>" <?=$role['nombre_rol']=="DOCENTE" ? 'selected': ''?>><?=$role['nombre_rol'];?></option>
                                                         <?php
                                                     }
                                                     ?>
@@ -87,7 +87,7 @@ include ('../../app/controllers/roles/listado_de_roles.php');
                                 <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Especialidad</label>
-                                            <input type="email" name="email" class="form-control" required>
+                                            <input type="text" name="especialidad" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -99,7 +99,7 @@ include ('../../app/controllers/roles/listado_de_roles.php');
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Direccion</label>
-                                            <input type="text" name="especialidad" class="form-control" required>
+                                            <input type="text" name="direccion" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>

@@ -32,7 +32,7 @@ include ('../../app/controllers/docentes/listado_de_docentes.php');
                                 <thead>
                                 <tr>
                                     <th><center>Nro</center></th>
-                                    <th><center>Nombres del usuario</center></th>
+                                    <th><center>Nombres del docente</center></th>
                                     <th><center>Rol</center></th>
                                     <th><center>Ci</center></th>
                                     <th><center>Fecha de nacimineto</center></th>
@@ -43,33 +43,33 @@ include ('../../app/controllers/docentes/listado_de_docentes.php');
                                 </thead>
                                 <tbody>
                                 <?php
-                                $contador_administrativos = 0;
-                                foreach ($administrativos as $administrativo){
-                                    $id_administrativo = $administrativo['id_administrativo'];
-                                    $contador_administrativos = $contador_administrativos +1; ?>
+                                $contador_docentes = 0;
+                                foreach ($docentes as $docente){
+                                    $id_docente = $docente['id_docente'];
+                                    $contador_docentes = $contador_docentes +1; ?>
                                     <tr>
-                                        <td style="text-align: center"><?=$contador_administrativos;?></td>
-                                        <td><?=$administrativo['nombres']." - ".$administrativo['apellidos'];?></td>
-                                        <td><?=$administrativo['nombre_rol'];?></td>
-                                        <td><?=$administrativo['ci'];?></td>
-                                        <td style="text-align;: center"><?=$administrativo['fecha_nacimiento'];?></td>
-                                        <td><?=$administrativo['email'];?></td>
+                                        <td style="text-align: center"><?=$contador_docentes;?></td>
+                                        <td><?=$docente['nombres']." - ".$docente['apellidos'];?></td>
+                                        <td><?=$docente['nombre_rol'];?></td>
+                                        <td><?=$docente['ci'];?></td>
+                                        <td style="text-align;: center"><?=$docente['fecha_nacimiento'];?></td>
+                                        <td><?=$docente['email'];?></td>
                                         <td>
                                             <?php
-                                            if($administrativo['estado'] == "1") echo "ACTIVO";
+                                            if($docente['estado'] == "1") echo "ACTIVO";
                                             else echo "INACTIVO";
                                             ?>
                                         </td>
                                         <td style="text-align: center">
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="show.php?id=<?=$id_administrativo;?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
-                                                <a href="edit.php?id=<?=$id_administrativo;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
-                                               <!--<form action="<?=APP_URL;?>/app/controllers/usuarios/delete.php" onclick="preguntar<?=$id_administrativo;?>(event)" method="post" id="miFormulario<?=$id_administrativo;?>">
-                                                    <input type="text" name="id_usuario" value="<?=$id_administrativo;?>" hidden>
+                                                <a href="show.php?id=<?=$id_docente;?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
+                                                <a href="edit.php?id=<?=$id_docente;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
+                                               <!--<form action="<?=APP_URL;?>/app/controllers/usuarios/delete.php" onclick="preguntar<?=$id_docente;?>(event)" method="post" id="miFormulario<?=$id_docente;?>">
+                                                    <input type="text" name="id_usuario" value="<?=$id_docente;?>" hidden>
                                                     <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 0px 5px 5px 0px"><i class="bi bi-trash"></i></button>
                                                 </form>
                                                 <script>
-                                                    function preguntar<?=$id_administrativo;?>(event) {
+                                                    function preguntar<?=$id_docente;?>(event) {
                                                         event.preventDefault();
                                                         Swal.fire({
                                                             title: 'Eliminar registro',
@@ -82,7 +82,7 @@ include ('../../app/controllers/docentes/listado_de_docentes.php');
                                                             denyButtonText: 'Cancelar',
                                                         }).then((result) => {
                                                             if (result.isConfirmed) {
-                                                                var form = $('#miFormulario<?=$id_administrativo;?>');
+                                                                var form = $('#miFormulario<?=$id_docente;?>');
                                                                 form.submit();
                                                             }
                                                         });

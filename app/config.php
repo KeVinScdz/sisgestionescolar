@@ -10,7 +10,7 @@ define('USUARIO','root');
 define('PASSWORD','');
 define('BD','sisgestionescolar');
 
-define('APP_NAME','SISTEMA DE GESTIÓN ESCOLAR');
+define('APP_NAME','MATRYERSE');
 define('APP_URL','http://localhost/sisgestionescolar');
 define('KEY_API_MAPS','');
 

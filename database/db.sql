@@ -32,7 +32,7 @@ CREATE TABLE usuarios (
 
 )ENGINE=InnoDB;
 INSERT INTO usuarios (rol_id,email,password,fyh_creacion,estado)
-VALUES ('1','admin@admin.com','$2y$10$0tYmdHU9uGCIxY1f90W1EuIm54NQ8axowkxL1WzLbqO2LdNa8m3l2','2023-12-28 20:29:10','1');
+VALUES ('1','kevin@gmail.com','$2y$10$0tYmdHU9uGCIxY1f90W1EuIm54NQ8axowkxL1WzLbqO2LdNa8m3l2','2023-12-28 20:29:10','1');
 
 CREATE TABLE personas (
 
@@ -44,7 +44,7 @@ CREATE TABLE personas (
   fecha_nacimiento        VARCHAR (20) NOT NULL,
   profesion               VARCHAR (50) NOT NULL,
   direccion               VARCHAR (255) NOT NULL,
-  celular               VARCHAR (20) NOT NULL,
+  celular                 VARCHAR (20) NOT NULL,
 
 
   fyh_creacion   DATETIME NULL,
@@ -76,8 +76,8 @@ CREATE TABLE docentes (
 
   id_docente              INT (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   persona_id              INT (11) NOT NULL,
-  especialidad            INT(255) NOT NULL,
-  antiguedad              INT(255) NOT NULL,
+  especialidad            VARCHAR(255) NOT NULL,
+  antiguedad              VARCHAR(255) NOT NULL,
 
   fyh_creacion   DATETIME NULL,
   fyh_actualizacion DATETIME NULL,
@@ -89,27 +89,42 @@ FOREIGN KEY (persona_id) REFERENCES personas (id_persona) on delete no action on
 
 CREATE TABLE estudiantes (
 
-  id_estudiante              INT (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  persona_id              INT (11) NOT NULL,
+  id_estudiante            INT (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  persona_id               INT (11) NOT NULL,
+  nivel_id                 INT (11) NOT NULL,
+  grado_id                 INT (11) NOT NULL,
+  rude                     VARCHAR(50) NOT NULL,
 
-  fyh_creacion   DATETIME NULL,
-  fyh_actualizacion DATETIME NULL,
-  estado        VARCHAR (11),
 
-FOREIGN KEY (persona_id) REFERENCES personas (id_persona) on delete no action on update cascade
+
+
+  fyh_creacion                DATETIME NULL,
+  fyh_actualizacion           DATETIME NULL,
+  estado                      VARCHAR (11),
+
+FOREIGN KEY (persona_id) REFERENCES personas (id_persona) on delete no action on update cascade,
+FOREIGN KEY (nivel_id) REFERENCES niveles (id_nivel) on delete no action on update cascade,
+FOREIGN KEY (grado_id) REFERENCES grados (id_grado) on delete no action on update cascade
 
 )ENGINE=InnoDB;
 
 CREATE TABLE ppffs (
 
-  id_ppff              INT (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  persona_id              INT (11) NOT NULL,
+  id_ppff                   INT (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  estudiante_id             INT (11) NOT NULL,
+  nombres_apellidos_ppff    VARCHAR(50) NOT NULL,
+  ci_ppf                    VARCHAR(20) NOT NULL,
+  celular_ppff              VARCHAR(20) NOT NULL,
+  ocupacion_ppff            VARCHAR(50) NOT NULL,
+  ref_nombre                VARCHAR(50) NOT NULL,
+  ref_parentezco            VARCHAR(50) NOT NULL,
+  ref_celular               VARCHAR(50) NOT NULL,
 
   fyh_creacion   DATETIME NULL,
   fyh_actualizacion DATETIME NULL,
   estado        VARCHAR (11),
 
-FOREIGN KEY (persona_id) REFERENCES personas (id_persona) on delete no action on update cascade
+FOREIGN KEY (estudiante_id) REFERENCES estudiantes (id_estudiante) on delete no action on update cascade
 
 )ENGINE=InnoDB;
 
@@ -192,3 +207,20 @@ CREATE TABLE materias (
 )ENGINE=InnoDB;
 INSERT INTO materias (nombre_materia,fyh_creacion,estado)
 VALUES ('MATEMATICA','2024-09-26 20:29:10','1');
+
+CREATE TABLE pagos (
+
+  id_pago         INT (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  estudiante_id   INT (11) NOT NULL,
+  mes_pagado      VARCHAR (50) NOT NULL,
+  monto_pagado    VARCHAR (10) NOT NULL,
+  fecha_pagado    VARCHAR (20) NOT NULL,
+
+
+  fyh_creacion   DATETIME NULL,
+  fyh_actualizacion DATETIME NULL,
+  estado        VARCHAR (11),
+
+  FOREIGN KEY (estudiante_id) REFERENCES estudiantes (id_estudiante) on delete no action on update cascade
+
+)ENGINE=InnoDB;
