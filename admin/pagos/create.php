@@ -54,7 +54,7 @@ include ('../../app/controllers/pagos/datos_pago_estudiante.php');
                                     <tr>
                                         <td><center><?=$contador = $contador +1;?></center></td>
                                         <td><center><?=$pago['mes_pagado'];?></center></td>
-                                        <td><center>Col. <?=$pago['monto_pagado'];?></center></td>
+                                        <td><center>Cop. <?=$pago['monto_pagado'];?></center></td>
                                         <td><center><?=$pago['fecha_pagado'];?></center></td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
