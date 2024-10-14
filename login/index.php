@@ -35,9 +35,9 @@ include ('../app/config.php');
             <p class="login-box-msg">Inicio de sesión</p>
             <hr>
 
-            <form action="controller_login.php" method="post">
+            <form action="controller_login.php" method="post" onsubmit="return validar()">
                 <div class="input-group mb-3">
-                    <input type="email" name="email" class="form-control" placeholder="Email">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -45,7 +45,7 @@ include ('../app/config.php');
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" name="password" class="form-control" placeholder="Password">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -82,7 +82,28 @@ include ('../app/config.php');
     </div>
 </div>
 <!-- /.login-box -->
+<script>
+    function validar() {
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
 
+        if (email === "")   {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ingresa tu email.'
+            });
+            return false;
+        }
+        if (password === "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ingresa tu contraseña.'
+            })
+        }
+    }
+</script>
 <!-- jQuery -->
 <script src="<?=APP_URL;?>/public/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->

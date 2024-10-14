@@ -190,7 +190,7 @@ include ('../../layout/mensajes.php');
         </button>
       </div>
       <div class="modal-body">
-        <form action="<?=APP_URL;?>/app/controllers/pagos/create.php" method="post">
+        <form action="<?=APP_URL;?>/app/controllers/pagos/create.php" method="post" onsubmit="return validar()">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -227,13 +227,13 @@ include ('../../layout/mensajes.php');
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Monto pagado</label>
-                        <input type="text" name="monto_pagado" class="form-control" value="0">
+                        <input type="text" name="monto_pagado" id="monto_pagado" class="form-control" value="0">
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Fecha de pago</label>
-                        <input type="date" name="fecha_pagado" class="form-control">
+                        <input type="date" name="fecha_pagado" id="fecha_pagado" class="form-control">
                     </div>
                 </div>
             </div>
@@ -246,3 +246,26 @@ include ('../../layout/mensajes.php');
     </div>
   </div>
 </div>
+<script>
+    function validar(){
+        let monto_pagado = document.getElementById("monto_pagado").value;
+        let fecha_pagado = document.getElementById("fecha_pagado").value;
+
+        if (monto_pagado === "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Porfavor, ingresa el monto pagado'
+            });
+            return false;
+        }
+        if (fecha_pagado === "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Porfavor, ingresa la fecha en que se realizo el pago'
+            });
+            return false;
+        }
+    }
+</script>

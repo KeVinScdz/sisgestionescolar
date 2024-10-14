@@ -22,12 +22,12 @@ include ('../../admin/layout/parte1.php');
                             <h3 class="card-title">Llene los datos</h3>
                         </div>
                         <div class="card-body">
-                            <form action="<?=APP_URL;?>/app/controllers/materias/create.php" method="post">
+                            <form action="<?=APP_URL;?>/app/controllers/materias/create.php" method="post" onsubmit="return validar()">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Materia</label>
-                                            <input type="text" name="nombre_materia" class="form-control" required>
+                                            <input type="text" name="nombre_materia" id="nombre_materia" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -52,6 +52,20 @@ include ('../../admin/layout/parte1.php');
 </div>
 <!-- /.content-wrapper -->
 
+<script>
+    function validar() {
+        let nombre_materia = document.getElementById("nombre_materia").value;
+        
+        if (nombre_materia === "") {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'La materia es obligatoria'
+        });
+        return false;
+        }
+    }
+</script>
 <?php
 
 include ('../../admin/layout/parte2.php');

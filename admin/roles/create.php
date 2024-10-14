@@ -22,12 +22,12 @@ include ('../../admin/layout/parte1.php');
                             <h3 class="card-title">Llene los datos</h3>
                         </div>
                         <div class="card-body">
-                            <form action="<?=APP_URL;?>/app/controllers/roles/create.php" method="post">
+                            <form action="<?=APP_URL;?>/app/controllers/roles/create.php" method="post" onsubmit="return validar()">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Nombre del rol</label>
-                                            <input type="text" name="nombre_rol" class="form-control" required>
+                                            <input type="text" name="nombre_rol" id="nombre_rol" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -52,6 +52,19 @@ include ('../../admin/layout/parte1.php');
 </div>
 <!-- /.content-wrapper -->
 
+<script>
+    function validar() {
+        let nombre_rol = document.getElementById("nombre_rol").value;
+        if (nombre_rol == "") {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El rol es obligatorio'
+        });
+        return false;
+        }
+    }
+</script>
 <?php
 
 include ('../../admin/layout/parte2.php');

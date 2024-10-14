@@ -22,7 +22,7 @@ include ('../../app/controllers/roles/listado_de_roles.php');
                             <h3 class="card-title">Llene los datos</h3>
                         </div>
                         <div class="card-body">
-                            <form action="<?=APP_URL;?>/app/controllers/docentes/create.php" method="post">
+                            <form action="<?=APP_URL;?>/app/controllers/docentes/create.php" method="post" onsubmit="return validar()">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
@@ -43,43 +43,43 @@ include ('../../app/controllers/roles/listado_de_roles.php');
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Nombres</label>
-                                            <input type="text" name="nombres" class="form-control" required>
+                                            <input type="text" name="nombres" id="nombres" class="form-control">
                                         </div>
                                     </div><div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Apellidos</label>
-                                            <input type="text" name="apellidos" class="form-control" required>
+                                            <input type="text" name="apellidos" id="apellidos" class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Carnet de indentidad</label>
-                                            <input type="number" name="ci" class="form-control" required>
+                                            <input type="number" name="ci" id="ci" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">fecha de nacimiento</label>
-                                            <input type="date" name="fecha_nacimiento" class="form-control" required>
+                                            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Celular</label>
-                                            <input type="number" name="celular" class="form-control" required>
+                                            <input type="number" name="celular" id="celular" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Profesion</label>
-                                            <input type="text" name="profesion" class="form-control" required>
+                                            <input type="text" name="profesion" id="profesion" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">correo</label>
-                                            <input type="email" name="email" class="form-control" required>
+                                            <input type="email" name="email" id="email" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -87,19 +87,19 @@ include ('../../app/controllers/roles/listado_de_roles.php');
                                 <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Especialidad</label>
-                                            <input type="text" name="especialidad" class="form-control" required>
+                                            <input type="text" name="especialidad" id="especialidad" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Antiguedad</label>
-                                            <input type="text" name="antiguedad" class="form-control" required>
+                                            <input type="text" name="antiguedad" id="antiguedad" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Direccion</label>
-                                            <input type="text" name="direccion" class="form-control" required>
+                                            <input type="text" name="direccion" id="direccion" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +123,29 @@ include ('../../app/controllers/roles/listado_de_roles.php');
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script>
+    function validar(){
+        let nombres = document.getElementById("nombres").value;
+        let apellidos = document.getElementById("apellidos").value;
+        let ci = document.getElementById("ci").value;
+        let fecha_nacimiento = document.getElementById("fecha_nacimiento").value;
+        let celular = document.getElementById("celular").value;
+        let profesion = document.getElementById("profesion").value;
+        let email = document.getElementById("email").value;
+        let especialidad = document.getElementById("especialidad").value;
+        let antiguedad = document.getElementById("antiguedad").value;
+        let direccion = document.getElementById("direccion").value;
 
+        if (nombres === "" || apellidos === "" || ci === "" || fecha_nacimiento === "" || celular === "" || profesion === "" || email === "" || especialidad === "" || antiguedad === "" || direccion === "") {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Por favor, llene todos los campos.'
+        });
+        return false;
+        }
+    }
+</script>
 <?php
 
 include ('../../admin/layout/parte2.php');

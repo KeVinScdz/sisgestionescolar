@@ -21,12 +21,12 @@ include ('../../../admin/layout/parte1.php');
                             <h3 class="card-title">Llene los datos</h3>
                         </div>
                         <div class="card-body">
-                            <form action="<?=APP_URL;?>/app/controllers/configuraciones/gestion/create.php" method="post">
+                            <form action="<?=APP_URL;?>/app/controllers/configuraciones/gestion/create.php" method="post" onsubmit="return validar()">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">Gestión educativa</label>
-                                            <input type="text" name="gestion" class="form-control">
+                                            <input type="text" name="gestion" id="gestion" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +60,20 @@ include ('../../../admin/layout/parte1.php');
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script>
+    function validar(){
+        let gestion = document.getElementById("gestion").value;
 
+        if (gestion === ""){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ingresa una gestion, Porfavor'
+            });
+            return false;
+        }
+    }
+</script>
 <?php
 
 include ('../../../admin/layout/parte2.php');
