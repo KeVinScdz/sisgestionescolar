@@ -6,6 +6,7 @@ include ('../../app/controllers/docentes/listado_de_docentes.php');
 include ('../../app/controllers/niveles/listado_de_niveles.php');
 include ('../../app/controllers/grados/listado_de_grados.php');
 include ('../../app/controllers/materias/listado_de_materias.php');
+include ('../../app/controllers/docentes/listado_asignaciones.php');
 
 
 ?>
@@ -37,12 +38,11 @@ include ('../../app/controllers/materias/listado_de_materias.php');
                                 <tr>
                                     <th><center>Nro</center></th>
                                     <th><center>Nombres del docente</center></th>
-                                    <th><center>Rol</center></th>
                                     <th><center>Ci</center></th>
                                     <th><center>Fecha de nacimineto</center></th>
                                     <th><center>Email</center></th>
                                     <th><center>Estado</center></th>
-                                    <th><center>Acciones</center></th>
+                                    <th><center>Materias asignadas</center></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -54,7 +54,6 @@ include ('../../app/controllers/materias/listado_de_materias.php');
                                     <tr>
                                         <td style="text-align: center"><?=$contador_docentes;?></td>
                                         <td><?=$docente['nombres']." - ".$docente['apellidos'];?></td>
-                                        <td><?=$docente['nombre_rol'];?></td>
                                         <td><?=$docente['ci'];?></td>
                                         <td style="text-align;: center"><?=$docente['fecha_nacimiento'];?></td>
                                         <td><?=$docente['email'];?></td>
@@ -64,35 +63,84 @@ include ('../../app/controllers/materias/listado_de_materias.php');
                                             else echo "INACTIVO";
                                             ?>
                                         </td>
-                                        <td style="text-align: center">
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="show.php?id=<?=$id_docente;?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
-                                                <a href="edit.php?id=<?=$id_docente;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
-                                               <!--<form action="<?=APP_URL;?>/app/controllers/usuarios/delete.php" onclick="preguntar<?=$id_docente;?>(event)" method="post" id="miFormulario<?=$id_docente;?>">
-                                                    <input type="text" name="id_usuario" value="<?=$id_docente;?>" hidden>
-                                                    <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 0px 5px 5px 0px"><i class="bi bi-trash"></i></button>
-                                                </form>
-                                                <script>
-                                                    function preguntar<?=$id_docente;?>(event) {
-                                                        event.preventDefault();
-                                                        Swal.fire({
-                                                            title: 'Eliminar registro',
-                                                            text: '¿Desea eliminar este registro?',
-                                                            icon: 'question',
-                                                            showDenyButton: true,
-                                                            confirmButtonText: 'Eliminar',
-                                                            confirmButtonColor: '#a5161d',
-                                                            denyButtonColor: '#270a0a',
-                                                            denyButtonText: 'Cancelar',
-                                                        }).then((result) => {
-                                                            if (result.isConfirmed) {
-                                                                var form = $('#miFormulario<?=$id_docente;?>');
-                                                                form.submit();
+                                        <td>
+                                        <center>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_materias<?=$id_docente;?>">
+                                            <i class="bi bi-postcard"></i> Ver materias
+                                         </button>
+                                        </center>
+                                        <div class="modal fade" id="modal_materias<?=$id_docente;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                <div class="modal-header" style="background-color:rgb(12, 44, 255)">
+                                                    <h5 class="modal-title" id="exampleModalLabel"><b>Materias asignadas</b></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <b>Docente: <?=$docente['apellidos']. " ".$docente['nombres'];?></b>
+                                                    <hr>
+                                                    <table class="table table-bordered table-striped table-sm table-hover">
+                                                        <tr>
+                                                            <th><center>Nro</center></th>
+                                                            <th><center>Nivel</center></th>
+                                                            <th><center>Turno</center></th>
+                                                            <th><center>Grado</center></th>
+                                                            <th><center>Paralelo</center></th>
+                                                            <th><center>Materia</center></th>
+                                                            <th><center>Acciones</center></th>
+                                                        </tr>
+                                                            <?php
+                                                            $contador = 0;
+                                                            foreach ($asignaciones as $asignacione){
+                                                                $id_asignacion = $asignacione['id_asignacion'];
+                                                                if($asignacione['docente_id']==$id_docente){  $contador = $contador +1;?>
+                                                                        <tr>
+                                                                            <td><center><?=$contador;?></center></td>
+                                                                            <td><center><?=$asignacione['nivel'];?></center></td>
+                                                                            <td><center><?=$asignacione['turno'];?></center></td>
+                                                                            <td><center><?=$asignacione['curso'];?></center></td>
+                                                                            <td><center><?=$asignacione['paralelo'];?></center></td>
+                                                                            <td><center><?=$asignacione['nombre_materia'];?></center></td>
+                                                                            <td style="text-align: center">
+                                                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                                                    <a data-toggle="modal" data-target="#modal_edicion<?=$id_asignacion;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
+                                                                                <!--<form action="<?=APP_URL;?>/app/controllers/usuarios/delete.php" onclick="preguntar<?=$id_docente;?>(event)" method="post" id="miFormulario<?=$id_docente;?>">
+                                                                                        <input type="text" name="id_usuario" value="<?=$id_docente;?>" hidden>
+                                                                                        <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 0px 5px 5px 0px"><i class="bi bi-trash"></i></button>
+                                                                                    </form>
+                                                                                    <script>
+                                                                                        function preguntar<?=$id_docente;?>(event) {
+                                                                                            event.preventDefault();
+                                                                                            Swal.fire({
+                                                                                                title: 'Eliminar registro',
+                                                                                                text: '¿Desea eliminar este registro?',
+                                                                                                icon: 'question',
+                                                                                                showDenyButton: true,
+                                                                                                confirmButtonText: 'Eliminar',
+                                                                                                confirmButtonColor: '#a5161d',
+                                                                                                denyButtonColor: '#270a0a',
+                                                                                                denyButtonText: 'Cancelar',
+                                                                                            }).then((result) => {
+                                                                                                if (result.isConfirmed) {
+                                                                                                    var form = $('#miFormulario<?=$id_docente;?>');
+                                                                                                    form.submit();
+                                                                                                }
+                                                                                            });
+                                                                                        }
+                                                                                    </script>
+                                                                    -->
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <?php
+                                                                }
                                                             }
-                                                        });
-                                                    }
-                                                </script>
-                                -->
+                                                            ?>
+                                                    </table>
+                                                </div>
+                                            </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -176,7 +224,7 @@ include ('../../layout/mensajes.php');
 <div class="modal fade" id="modal_asignacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="background-color: #0c84ff">
         <h5 class="modal-title" id="exampleModalLabel"><b>Asignacion de materias</b></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -221,7 +269,7 @@ include ('../../layout/mensajes.php');
                     <select name="id_grado" id="" class="form-control">
                         <?php
                         foreach ($grados as $grado) {
-                            $id_grado = $nivele['id_grado']; ?>
+                            $id_grado = $grado['id_grado']; ?>
                             <option value="<?=$id_grado;?>"><?=$grado['curso']." | paralelo ".$grado['paralelo'];?></option>
 
                         <?php   
