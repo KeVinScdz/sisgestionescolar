@@ -282,6 +282,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </ul>
                     </li>
                     <li class="nav-item">
+                        <a href="<?=APP_URL;?>/admin/calificaciones" class="nav-link active">
+                            <i class="nav-icon fas"><i class="bi bi-check2-square"></i></i>
+                            <p>
+                                Calificaiones
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fas"><i class="bi bi-person-video"></i></i>
                             <p>
