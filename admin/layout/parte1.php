@@ -34,6 +34,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     <link rel="stylesheet" href="<?=APP_URL;?>/public/dist/css/adminlte.min.css">
 
+    <!-- jQuery -->
+    <script src="<?=APP_URL;?>/public/plugins/jquery/jquery.min.js"></script>
+
     <!-- Sweetaler2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

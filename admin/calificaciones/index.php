@@ -42,6 +42,7 @@ include ('../../app/controllers/docentes/listado_asignaciones.php');
                                     <?php
                                     $contador = 0;
                                     foreach ($asignaciones as $asignacione){
+                                        $id_grado = $asignacione['id_grado'];
                                         if($email_sesion == $asignacione['email']){
                                             $contador = $contador + 1; ?>
                                         <tr>
@@ -51,7 +52,7 @@ include ('../../app/controllers/docentes/listado_asignaciones.php');
                                             <td><center><?=$asignacione['curso'];?></center></td>
                                             <td><center><?=$asignacione['paralelo'];?></center></td>
                                             <td><center><?=$asignacione['nombre_materia'];?></center></td>
-                                            <td style="text-align: center"><a href="" class="btn btn-primary btn-sm"><i class="bi bi-check2-square"></i>Notas</a></td>
+                                            <td style="text-align: center"><a href="create.php?id_grado=<?=$id_grado?>" class="btn btn-primary btn-sm"><i class="bi bi-check2-square"></i>Notas</a></td>
                                         </tr>
                                         <?php
 
