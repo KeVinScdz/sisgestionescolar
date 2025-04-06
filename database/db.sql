@@ -252,6 +252,10 @@ CREATE TABLE calificaciones (
   docente_id        INT (11) NOT NULL,
   estudiante_id     INT (11) NOT NULL,
 
+  nota1          VARCHAR (10) NOT NULL,
+  nota2          VARCHAR (10) NOT NULL,
+  nota3          VARCHAR (10) NOT NULL,
+
 
 
   fyh_creacion   DATETIME NULL,
@@ -259,8 +263,6 @@ CREATE TABLE calificaciones (
   estado        VARCHAR (11),
 
   FOREIGN KEY (docente_id) REFERENCES docentes (id_docente) on delete no action on update cascade,
-  FOREIGN KEY (nivel_id) REFERENCES niveles (id_nivel) on delete no action on update cascade,
-  FOREIGN KEY (materia_id) REFERENCES materias (id_materia) on delete no action on update cascade,
-  FOREIGN KEY (grado_id) REFERENCES grados (id_grado) on delete no action on update cascade
+  FOREIGN KEY (estudiante_id) REFERENCES estudiantes (id_estudiante) on delete no action on update cascade
 
 )ENGINE=InnoDB;
