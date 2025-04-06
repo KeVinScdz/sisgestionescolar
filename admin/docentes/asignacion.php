@@ -103,37 +103,106 @@ include ('../../app/controllers/docentes/listado_asignaciones.php');
                                                                             <td><center><?=$asignacione['curso'];?></center></td>
                                                                             <td><center><?=$asignacione['paralelo'];?></center></td>
                                                                             <td><center><?=$asignacione['nombre_materia'];?></center></td>
-                                                                            <td style="text-align: center">
+                                                                            <td>
                                                                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                                                                    <a data-toggle="modal" data-target="#modal_edicion<?=$id_asignacion;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
-                                                                                <!--<form action="<?=APP_URL;?>/app/controllers/usuarios/delete.php" onclick="preguntar<?=$id_docente;?>(event)" method="post" id="miFormulario<?=$id_docente;?>">
-                                                                                        <input type="text" name="id_usuario" value="<?=$id_docente;?>" hidden>
-                                                                                        <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 0px 5px 5px 0px"><i class="bi bi-trash"></i></button>
-                                                                                    </form>
-                                                                                    <script>
-                                                                                        function preguntar<?=$id_docente;?>(event) {
-                                                                                            event.preventDefault();
-                                                                                            Swal.fire({
-                                                                                                title: 'Eliminar registro',
-                                                                                                text: '¿Desea eliminar este registro?',
-                                                                                                icon: 'question',
-                                                                                                showDenyButton: true,
-                                                                                                confirmButtonText: 'Eliminar',
-                                                                                                confirmButtonColor: '#a5161d',
-                                                                                                denyButtonColor: '#270a0a',
-                                                                                                denyButtonText: 'Cancelar',
-                                                                                            }).then((result) => {
-                                                                                                if (result.isConfirmed) {
-                                                                                                    var form = $('#miFormulario<?=$id_docente;?>');
-                                                                                                    form.submit();
-                                                                                                }
-                                                                                            });
-                                                                                        }
-                                                                                    </script>
-                                                                    -->
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
+                                                                                    <a data-toggle="modal" data-target="#modal_edicion<?=$id_asignacion;?>" type="button" 
+                                                                                    class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
+
+                                                                                    <div class="modal fade" id="modal_edicion<?=$id_asignacion;?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog">
+                                                                                            <div class="modal-content">
+                                                                                            <div class="modal-header" style="background-color:rgb(6, 122, 41)">
+                                                                                                <h5 class="modal-title" id="exampleModalLabel"><b>Asignacion de materias</b></h5>
+                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                                <form action="<?=APP_URL;?>/app/controllers/docentes/update_asignaciones.php" method="post">
+                                                                                                        <div class="row">
+                                                                                                        <div class="col-md-12">
+                                                                                                            <div class="form-group">
+                                                                                                                <input type="text" name="id_asignacion" value="<?=$id_asignacion;?>" hidden>
+                                                                                                                <label for="">Nivel</label>
+                                                                                                                <select name="id_nivel" id="" class="form-control">
+                                                                                                                    <?php
+                                                                                                                    foreach ($niveles as $nivele) {
+                                                                                                                        $id_nivel = $nivele['id_nivel']; ?>
+                                                                                                                        <option value="<?=$id_nivel;?>" <?=$nivele['id_nivel']==$asignacione['nivel_id'] ? 'selected': ''?>><?=$nivele['nivel']." - ".$nivele['turno'];?></option>
+
+                                                                                                                    <?php   
+                                                                                                                    }
+                                                                                                                    ?>
+                                                                                                                </select>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-12">
+                                                                                                            <div class="form-group">
+                                                                                                                <label for="">Grados</label>
+                                                                                                                <select name="id_grado" id="" class="form-control">
+                                                                                                                    <?php
+                                                                                                                    foreach ($grados as $grado) {
+                                                                                                                        $id_grado = $grado['id_grado']; ?>
+                                                                                                                        <option value="<?=$id_grado;?>" <?=$grado['id_grado']==$asignacione['grado_id'] ? 'selected': ''?>><?=$grado['curso']." | paralelo ".$grado['paralelo'];?></option>
+
+                                                                                                                    <?php   
+                                                                                                                    }
+                                                                                                                    ?>
+                                                                                                                </select>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-12">
+                                                                                                            <div class="form-group">
+                                                                                                                <label for="">Materias</label>
+                                                                                                                <select name="id_materia" id="" class="form-control">
+                                                                                                                    <?php
+                                                                                                                    foreach ($materias as $materia) {
+                                                                                                                        $id_materia = $materia['id_materia']; ?>
+                                                                                                                        <option value="<?=$id_materia;?>" <?=$materia['id_materia']==$asignacione['materia_id'] ? 'selected': ''?>><?=$materia['nombre_materia'];?></option>
+
+                                                                                                                    <?php   
+                                                                                                                    }
+                                                                                                                    ?>
+                                                                                                                </select>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                     </div>
+                                                                                                </div>
+                                                                                                    <div class="modal-footer">
+                                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                                                        <button type="submit" class="btn btn-primary">Registrar</button>
+                                                                                                        </div>
+                                                                                                </form>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        </div>
+                                                                                            <form action="<?=APP_URL;?>/app/controllers/docentes/delete_asignacion.php" onclick="preguntar<?=$id_asignacion;?>(event)" method="post" id="miFormulario<?=$id_asignacion;?>">
+                                                                                                    <input type="text" name="id_asignacion" value="<?=$id_asignacion;?>" hidden>
+                                                                                                    <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 0px 5px 5px 0px"><i class="bi bi-trash"></i></button>
+                                                                                                </form>
+                                                                                                <script>
+                                                                                                    function preguntar<?=$id_asignacion;?>(event) {
+                                                                                                        event.preventDefault();
+                                                                                                        Swal.fire({
+                                                                                                            title: 'Eliminar registro',
+                                                                                                            text: '¿Desea eliminar este registro?',
+                                                                                                            icon: 'question',
+                                                                                                            showDenyButton: true,
+                                                                                                            confirmButtonText: 'Eliminar',
+                                                                                                            confirmButtonColor: '#a5161d',
+                                                                                                            denyButtonColor: '#270a0a',
+                                                                                                            denyButtonText: 'Cancelar',
+                                                                                                        }).then((result) => {
+                                                                                                            if (result.isConfirmed) {
+                                                                                                                var form = $('#miFormulario<?=$id_asignacion;?>');
+                                                                                                                form.submit();
+                                                                                                            }
+                                                                                                        });
+                                                                                                    }
+                                                                                                </script>
+                                                                                            </div>
+                                                                                         </td>
+                                                                                     </tr>
                                                                     <?php
                                                                 }
                                                             }
