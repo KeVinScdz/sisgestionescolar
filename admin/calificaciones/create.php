@@ -65,13 +65,13 @@ foreach ($estudiantes as $estudiante){
                                         <td style="text-align: center"><?=$estudiante['curso'];?></td>
                                         <td style="text-align: center"><?=$estudiante['paralelo'];?></td>
                                         <td>
-                                           <input style="text-align: center" type="number" class="form-control" >
+                                           <input style="text-align: center" id="nota1_<?=$contador_estudiantes?>" type="number" class="form-control" >
                                         </td>
                                         <td>
-                                           <input style="text-align: center" type="number" class="form-control" >
+                                           <input style="text-align: center" id="nota2_<?=$contador_estudiantes?>" type="number" class="form-control" >
                                         </td>
                                         <td>
-                                           <input style="text-align: center" type="number" class="form-control" >
+                                           <input style="text-align: center" id="nota3_<?=$contador_estudiantes?>" type="number" class="form-control" >
                                         </td>
                                         
                                     </tr>
@@ -79,6 +79,7 @@ foreach ($estudiantes as $estudiante){
                                     }
                                     
                                 }
+                                $contador_estudiantes= $contador_estudiantes; 
                                 ?>
                                 </tbody>
                             </table>
@@ -86,7 +87,24 @@ foreach ($estudiantes as $estudiante){
                             <button class="btn btn-primary btn-lg" id="btn_guardar">Guardar notas</button>
                             <script>
                                   $('#btn_guardar').click(function () {
-                                    alert("listo");
+                                    var n = '<?=$contador_estudiantes;?>';
+                                    var i = 1;
+
+                                    for (i = 1; i<=n ;i++){ 
+
+                                        var a= '#nota1_'+i;
+                                        var nota1 = $(a).val();
+
+                                        var b= '#nota2_'+i;
+                                        var nota2 = $(b).val();
+
+                                        var c= '#nota3_'+i;
+                                        var nota3 = $(c).val();
+
+                                        alert (nota1 +" - "+nota2+" - "+nota3);
+                                        
+                                        
+                                    }
                                 });  
                             </script>
                         </div>
