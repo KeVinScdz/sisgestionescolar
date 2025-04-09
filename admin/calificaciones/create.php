@@ -1,9 +1,13 @@
 <?php
 $id_grado_get = $_GET['id_grado'];
+$id_docente_get = $_GET['id_docente'];
+$id_materia_get = $_GET['id_materia'];
+
 include ('../../app/config.php');
 include ('../../admin/layout/parte1.php');
 
 include ('../../app/controllers/estudiantes/listado_de_estudiantes.php');
+include('../../app/controllers/calificaciones/listado_de_calificaciones.php');
 
 $curso = "";
 $paralelo = "";
@@ -52,26 +56,45 @@ foreach ($estudiantes as $estudiante){
                                 <tbody>
                                 <?php
                                 $contador_estudiantes = 0;
+                                $nota1 ="";
+                                $nota2 ="";
+                                $nota3 ="";
                                 foreach ($estudiantes as $estudiante){
 
                                     if ($id_grado_get ==$estudiante['grado_id'] ){ 
                                     $id_estudiante = $estudiante['id_estudiante'];
                                     $contador_estudiantes = $contador_estudiantes +1; ?>
                                     <tr>
-                                        <td style="text-align: center"><?=$contador_estudiantes;?></td>
+                                        <td style="text-align: center">
+                                            <input type="text" id="estudiante_<?=$contador_estudiantes;?>" 
+                                            value="<?=$id_estudiante;?>" hidden>
+                                            <?=$contador_estudiantes;?>
+                                        </td>
                                         <td><?=$estudiante['apellidos']." - ".$estudiante['nombres'];?></td>
                                         <td style="text-align: center"><?=$estudiante['nivel'];?></td>
                                         <td style="text-align: center"><?=$estudiante['turno'];?></td>
                                         <td style="text-align: center"><?=$estudiante['curso'];?></td>
                                         <td style="text-align: center"><?=$estudiante['paralelo'];?></td>
+                                        <?php
+                                        foreach ($calificaiones as $calificaione) {
+                                            if( ($calificaione['docente_id']==$id_docente_get)
+                                             && ($calificaione['estudiante_id']==$id_estudiante)
+                                             && ($calificaione['materia_id']==$id_materia_get)
+                                            ){
+                                                $nota1 = $calificaione['nota1'];
+                                                $nota2 = $calificaione['nota2'];
+                                                $nota3 = $calificaione['nota3'];
+                                            }
+                                        }
+                                        ?>
                                         <td>
-                                           <input style="text-align: center" id="nota1_<?=$contador_estudiantes?>" type="number" class="form-control" >
+                                           <input style="text-align: center" value="<?=$nota1;?>" id="nota1_<?=$contador_estudiantes?>" type="number" class="form-control" >
                                         </td>
                                         <td>
-                                           <input style="text-align: center" id="nota2_<?=$contador_estudiantes?>" type="number" class="form-control" >
+                                           <input style="text-align: center" value="<?=$nota2?>" id="nota2_<?=$contador_estudiantes?>" type="number" class="form-control" >
                                         </td>
                                         <td>
-                                           <input style="text-align: center" id="nota3_<?=$contador_estudiantes?>" type="number" class="form-control" >
+                                           <input style="text-align: center" value="<?=$nota3?>" id="nota3_<?=$contador_estudiantes?>" type="number" class="form-control" >
                                         </td>
                                         
                                     </tr>
@@ -89,6 +112,9 @@ foreach ($estudiantes as $estudiante){
                                   $('#btn_guardar').click(function () {
                                     var n = '<?=$contador_estudiantes;?>';
                                     var i = 1;
+                                    var id_docente = '<?=$id_docente_get;?>';
+                                    var id_materia = '<?=$id_materia_get;?>';
+                                    
 
                                     for (i = 1; i<=n ;i++){ 
 
@@ -101,12 +127,27 @@ foreach ($estudiantes as $estudiante){
                                         var c= '#nota3_'+i;
                                         var nota3 = $(c).val();
 
-                                        alert (nota1 +" - "+nota2+" - "+nota3);
-                                        
+                                        var d= '#estudiante_'+i;
+                                        var id_estudiante = $(d).val(); 
+
+                                        ////alert ("id_docente:" +id_docente+" -id_estudiante: "+id_estudiante+" -id_materia:"+id_materia);
+                                        var url = "../../app/controllers/calificaciones/create.php";
+                                        $.get(url,{id_docente:id_docente,id_estudiante:id_estudiante,id_materia:id_materia,nota1:nota1,nota2:nota2,nota3:nota3},function (datos) {
+                                           // alert("mando los datos");
+                                            $('#respuesta').html(datos);
+                                        });
                                         
                                     }
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: "Se actualizacion las notas",
+                                        showConfirmButton: false,
+                                        timer: 5000
+                                    });
                                 });  
                             </script>
+                            <div id="respuesta" hidden></div>
                         </div>
                     </div>
                 </div>
