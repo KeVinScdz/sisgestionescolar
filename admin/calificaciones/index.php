@@ -52,11 +52,14 @@ include ('../../app/controllers/docentes/listado_asignaciones.php');
                                             <td><center><?=$asignacione['curso'];?></center></td>
                                             <td><center><?=$asignacione['paralelo'];?></center></td>
                                             <td><center><?=$asignacione['nombre_materia'];?></center></td>
-                                            <td style="text-align: center"><a href="create.php?id_grado=<?=$id_grado?>" class="btn btn-primary btn-sm"><i class="bi bi-check2-square"></i>Notas</a></td>
+                                            <td style="text-align: center">
+                                                <a href="create.php?id_grado=<?=$id_grado?>&&id_docente=<?=$asignacione['docente_id'];?>&&id_materia=<?=$asignacione['materia_id'];?>" 
+                                                   class="btn btn-primary btn-sm"><i class="bi bi-check2-square">
+                                                   </i>Notas
+                                                </a>
+                                            </td>
                                         </tr>
                                         <?php
-
-
                                         }
                                     }
                                     ?>
