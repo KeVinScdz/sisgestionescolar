@@ -276,6 +276,7 @@ CREATE TABLE kardexs (
   estudiante_id     INT (11) NOT NULL,
   materia_id        INT (11) NOT NULL,
 
+  fecha          VARCHAR (50) NOT NULL,
   observacion    VARCHAR (255) NOT NULL,
   nota           TEXT NOT NULL,
 

@@ -14,7 +14,7 @@ include ('../../app/controllers/docentes/listado_asignaciones.php');
     <div class="content">
         <div class="container">
             <div class="row">
-                <h1>Grados asignados</h1>
+                <h1>Grados asignados para calificaciones</h1>
             </div>
             <br>
             <div class="row">
@@ -55,7 +55,7 @@ include ('../../app/controllers/docentes/listado_asignaciones.php');
                                             <td style="text-align: center">
                                                 <a href="create.php?id_grado=<?=$id_grado?>&&id_docente=<?=$asignacione['docente_id'];?>&&id_materia=<?=$asignacione['materia_id'];?>" 
                                                    class="btn btn-primary btn-sm"><i class="bi bi-check2-square">
-                                                   </i>Notas
+                                                   </i> Subir Notas
                                                 </a>
                                             </td>
                                         </tr>
