@@ -20,7 +20,140 @@ include ('../app/controllers/estudiantes/listado_de_estudiantes.php');
                 <h1><?=APP_NAME;?></h1>
             </div>
             <br>
-            <div class="row">
+            <!--Vista para el estudiante-->
+            <?php
+            if (trim($rol_sesion_usuario) == "ESTUDIANTE") {
+                foreach ($estudiantes as $estudiante) {
+                    if($email_sesion == $estudiante['email']){
+                          $id_estudiante = $estudiante['id_estudiante'];  
+                          $nivel = $estudiante['nivel'];  
+                          $turno = $estudiante['turno'];  
+                          $curso = $estudiante['curso'];  
+                          $paralelo = $estudiante['paralelo'];  
+                    } 
+                } 
+                ?>
+                 <div class="row">
+                    <div class="col-md-6">
+                      <div class="card card-outline card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Datos del estudiante</h3>
+                        </div>
+                        <div class="card-body">
+                        <table class="table table-sm table-hover table-striped table-bordered">
+                              <tr>
+                                <td><b>Nombres y Apellidos:</b></td>
+                                <td><?=$nombres_sesion_usuario." ".$apellidos_sesion_usuario;?></td>
+                              </tr>
+                              <tr>
+                                <td><b>Carnet de identidad:</b></td>
+                                <td><?=$ci_sesion_usuario;?></td>
+                              </tr>
+                              <tr>
+                                <td><b>Nivel:</b></td>
+                                <td><?=$nivel;?></td>
+                              </tr>
+                              <tr>
+                                <td><b>Turno:</b></td>
+                                <td><?=$turno;?></td>
+                              </tr>
+                              <tr>
+                                <td><b>Grado:</b></td>
+                                <td><?=$curso;?></td>
+                              </tr>
+                              <tr>
+                                <td><b>Paralelo:</b></td>
+                                <td><?=$paralelo;?></td>
+                              </tr>
+                            </table>
+                        </div>
+                      </div>     
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-primary"><i class="bi bi-hospital"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text"><b>Reportes de kardex</b></span>
+                            <a href="<?=APP_URL;?>/admin/kardex/reporte_estudiante.php?id_estudiante=<?=$id_estudiante?>" class="btn btn-primary btn-sm">Ingresar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info"><i class="bi bi-calendar-range"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text"><b>Calificaiones</b></span>
+                            <a href="gestion" class="btn btn-info btn-sm">Ingresar</a>
+                        </div>
+                    </div>
+                </div>
+                 </div>
+            
+            <?php
+            }
+            ?>
+            <!--Vista para el estudiante-->
+
+
+
+
+            <!--Vista para el docentes-->
+            <?php
+            if (trim($rol_sesion_usuario) == "DOCENTE") {
+                foreach ($docentes as $docente) {
+                    if($email_sesion == $docente['email']){
+                        $nombre_rol = $docente['nombre_rol'];
+                        $profesion = $docente['profesion'];
+                        $especialidad = $docente['especialidad'];
+
+                            
+                    } 
+                } 
+                ?>
+                 <div class="row">
+                    <div class="col-md-6">
+                      <div class="card card-outline card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Datos del docente</h3>
+                        </div>
+                        <div class="card-body">
+                        <table class="table table-sm table-hover table-striped table-bordered">
+                              <tr>
+                                <td><b>Nombres y Apellidos:</b></td>
+                                <td><?=$nombres_sesion_usuario." ".$apellidos_sesion_usuario;?></td>
+                              </tr>
+                              <tr>
+                                <td><b>Profesión:</b></td>
+                                <td><?=$profesion;?></td>
+                              </tr>
+                              <tr>
+                                <td><b>Rol:</b></td>
+                                <td><?=$nombre_rol;?></td>
+                              </tr>
+                              <tr>
+                                <td><b>Especialidad:</b></td>
+                                <td><?=$especialidad;?></td>
+                              </tr>
+                            </table>
+                        </div>
+                      </div>     
+                    </div>
+                 </div>
+            <?php
+            }
+            ?>
+            <!--Vista para el docentes-->
+
+
+
+
+
+
+             <!--Vista para el administrador-->
+            <?php
+            if (trim($rol_sesion_usuario) == "ADMINISTRADOR") { ?>
+                <div class="row">
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-primary">
                         <div class="inner">
@@ -185,10 +318,13 @@ include ('../app/controllers/estudiantes/listado_de_estudiantes.php');
                         </a>
                     </div>
                 </div>
+                </div>
+                 <?php
+            }
+            ?>
 
-
-
-            </div>
+            
+            <!--Vista para el administrador-->
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
