@@ -84,7 +84,7 @@ include ('../app/controllers/estudiantes/listado_de_estudiantes.php');
                         <span class="info-box-icon bg-info"><i class="bi bi-calendar-range"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text"><b>Calificaiones</b></span>
-                            <a href="gestion" class="btn btn-info btn-sm">Ingresar</a>
+                            <a href="<?=APP_URL;?>/admin/calificaciones/reporte_estudiante.php?id_estudiante=<?=$id_estudiante?>" class="btn btn-info btn-sm">Ingresar</a>
                         </div>
                     </div>
                 </div>
