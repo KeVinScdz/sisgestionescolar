@@ -1,4 +1,4 @@
-<?php
+|<?php
 include ('../../app/config.php');
 include ('../../admin/layout/parte1.php');
 
