@@ -61,10 +61,11 @@ include ('../../app/controllers/roles/listado_de_permisos.php');
                                                                 <div class="modal-body">
                                                                     <div class="row">
                                                                         <div class="col-md-3">
+                                                                            <input type="text" name="rol_id" id="rol_id<?=$id_rol;?>" value="<?=$id_rol;?>"hidden>
                                                                             <label>Rol: <?=$role['nombre_rol'];?></label>  
                                                                         </div>
                                                                         <div class="col-md-6">
-                                                                            <select name="" id="" class="form-control">
+                                                                            <select name="permiso_id" id="permiso_id<?=$id_rol;?>" class="form-control">
                                                                                 <?php
                                                                                 foreach ($permisos as $permiso){
                                                                                     $id_permiso = $permiso['id_permiso']; ?>
@@ -75,12 +76,33 @@ include ('../../app/controllers/roles/listado_de_permisos.php');
                                                                             </select>
                                                                         </div>
                                                                         <div class="col-md-3">
-                                                                            <button type="submit" class="btn btn-primary mb-2">Asignar</button>
+                                                                            <button type="submit" class="btn btn-primary mb-2" id="btn_reg<?=$id_rol?>">Asignar</button>
                                                                         </div>
+                                                                        <script>
+                                                                            $('#btn_reg<?=$id_rol;?>').click(function () {
+                                                                               var a = $('#rol_id<?=$id_rol;?>').val();
+                                                                               var b = $('#permiso_id<?=$id_rol;?>').val();
+                                                                              // alert(a+"-"+b);
+
+                                                                              var url = "../../app/controllers/roles/create_roles_permisos.php";
+                                                                                $.get(url, {rol_id:a,permiso_id:b}, function (datos) {
+                                                                                    $('#respuesta<?=$id_rol;?>').html(datos);
+                                                                                    //alert("mando los datos")
+                                                                                    Swal.fire({
+                                                                                        position: "top-end",
+                                                                                        icon: "success",
+                                                                                        title: "Se registro el permiso de la amnera correcta en la base de datos",
+                                                                                        showConfirmButton: false,
+                                                                                        timer: 5000
+                                                                                    });
+                                                                                });
+                                                                            });
+                                                                        </script>
+                                                                        <div id="respuesta<?=$id_rol;?>"></div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <table>
-                                                                            
+
                                                                         </table>
                                                                     </div>
                                                                 </div>
