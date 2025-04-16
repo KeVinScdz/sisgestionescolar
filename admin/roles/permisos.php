@@ -16,7 +16,7 @@ include ('../../app/controllers/roles/listado_de_permisos.php');
             <br>
             <div class="row">
 
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card card-outline card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Permisos registrados</h3>
@@ -29,30 +29,30 @@ include ('../../app/controllers/roles/listado_de_permisos.php');
                                 <thead>
                                 <tr>
                                     <th><center>Nro</center></th>
-                                    <th><center>Nombre del rol</center></th>
                                     <th><center>Nombre de la url</center></th>
+                                    <th><center>Url</center></th>
                                     <th><center>Acciones</center></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $contador_rol = 0;
-                                foreach ($roles as $role){
-                                    $id_rol = $role['id_rol'];
-                                    $contador_rol = $contador_rol +1; ?>
+                                $contador_permisos = 0;
+                                foreach ($permisos as $permiso){
+                                    $id_permiso = $permiso['id_permiso'];
+                                    $contador_permisos = $contador_permisos +1; ?>
                                     <tr>
-                                        <td style="text-align: center"><?=$contador_rol;?></td>
-                                        <td><?=$role['nombre_rol'];?></td>
+                                        <td style="text-align: center"><?=$contador_permisos;?></td>
+                                        <td><?=$permiso['nombre_url'];?></td>
+                                        <td><?=$permiso['url'];?></td>
                                         <td style="text-align: center">
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="show.php?id=<?=$id_rol;?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
-                                                <a href="edit.php?id=<?=$id_rol;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
-                                                <form action="<?=APP_URL;?>/app/controllers/roles/delete.php" onclick="preguntar<?=$id_rol;?>(event)" method="post" id="miFormulario<?=$id_rol;?>">
-                                                    <input type="text" name="id_rol" value="<?=$id_rol;?>" hidden>
+                                                <a href="edit_permiso.php?id=<?=$id_permiso;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
+                                                <form action="<?=APP_URL;?>/app/controllers/roles/delete_permiso.php" onclick="preguntar<?=$id_permiso;?>(event)" method="post" id="miFormulario<?=$id_permiso;?>">
+                                                    <input type="text" name="id_permiso" value="<?=$id_permiso;?>" hidden>
                                                     <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 0px 5px 5px 0px"><i class="bi bi-trash"></i></button>
                                                 </form>
                                                 <script>
-                                                    function preguntar<?=$id_rol;?>(event) {
+                                                    function preguntar<?=$id_permiso;?>(event) {
                                                         event.preventDefault();
                                                         Swal.fire({
                                                             title: 'Eliminar registro',
@@ -65,7 +65,7 @@ include ('../../app/controllers/roles/listado_de_permisos.php');
                                                             denyButtonText: 'Cancelar',
                                                         }).then((result) => {
                                                             if (result.isConfirmed) {
-                                                                var form = $('#miFormulario<?=$id_rol;?>');
+                                                                var form = $('#miFormulario<?=$id_permiso;?>');
                                                                 form.submit();
                                                             }
                                                         });
