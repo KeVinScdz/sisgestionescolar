@@ -750,7 +750,7 @@ INSERT INTO `usuarios` (`id_usuario`, `rol_id`, `email`, `password`, `fyh_creaci
 -- 
 CREATE TABLE `permisos` (
   `id_permiso` int(11) NOT NULL AUTO_INCRTEMENT PRIMARY KEY,
-  `rol_id` int(11) NOT NULL,
+
 
   `nombre_url` varchar(100) NOT NULL,
   `url` text NOT NULL,
@@ -759,7 +759,6 @@ CREATE TABLE `permisos` (
   `fyh_actualizacion` datetime  NULL,
   `estado` varchar(11),
 
-  FOREIGN KEY (rol_id)  REFERENCES roles (id_rol) on delete no action on update cascade
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
