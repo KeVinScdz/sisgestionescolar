@@ -2,7 +2,9 @@
 
 include ('../../../app/config.php');
 
-$rol_id = $_GET['rol_id'];
+
+
+$id_rol = $_GET['rol_id'];
 $permiso_id = $_GET['permiso_id'];
 $fechaHora = date("Y-m-d H:i:s"); // Asegúrate que esta variable exista
 $estado = '1'; // Valor por defecto o dinámico
@@ -11,7 +13,7 @@ $sentencia = $pdo->prepare( 'INSERT INTO roles_permisos
 (rol_id, permiso_id, fyh_creacion, estado)
 VALUES (:rol_id, :permiso_id, :fyh_creacion, :estado)') ;
 
-$sentencia->bindParam(':rol_id', $rol_id);
+$sentencia->bindParam(':rol_id', $id_rol);
 $sentencia->bindParam(':permiso_id', $permiso_id);
 $sentencia->bindParam(':fyh_creacion', $fechaHora);
 $sentencia->bindParam(':estado', $estado); // ESTO FALTABA
@@ -19,6 +21,44 @@ $sentencia->bindParam(':estado', $estado); // ESTO FALTABA
 $sentencia->execute();
 
 echo "Registro exitoso";
+?>
+    <div class="row">
+        <table class="table  table-bordered table-sm table-striped table-hover " id= "tabla_res<?=$id_rol;?>">
+            <tr>
+                <th style="text-aling: center;background-color: #dbcd59">Nro</th>
+                <th style="text-aling: center;background-color: #dbcd59">Rol</th>
+                <th style="text-aling: center;background-color: #dbcd59">Permiso</th>
+                <th style="text-aling: center;background-color: #dbcd59">Accion</th>
+            </tr>   
+            <?php
+            $contador = 0;
+            /** Created by PhpStorm. ... */
+            $sql_roles_permisos = "SELECT * FROM roles_permisos as rolper
+                INNER JOIN permisos as per ON per.id_permiso = rolper.permiso_id
+                INNER JOIN roles as rol ON rol.id_rol = rolper.rol_id
+                where rolper.estado = '1' ORDER BY per.nombre_url ASC ";
+            $query_roles_permisos = $pdo->prepare($sql_roles_permisos);
+            $query_roles_permisos->execute();
+            $roles_permisos = $query_roles_permisos->fetchAll( fetch_style: PDO::FETCH_ASSOC);
+
+            foreach ($roles_permisos as $roles_permiso) {
+                if ($id_rol == $roles_permiso['rol_id']) {
+                    $id_rol_permiso = $roles_permiso['id_rol_permiso'];
+                    $contador = $contador + 1; ?>
+                                                                                                    
+                    <tr>
+                        <td><center><?= $contador; ?></center></td>
+                        <td><center><?= $roles_permiso['nombre_rol']; ?></center></td>
+                        <td><?= $roles_permiso['nombre_url']; ?></td>
+                        <td></td>
+                    </tr>
+                    <?php
+                }
+            }
+            ?>                                                                     
+        </table>
+    </div>
+    <?php
 
 /*
 if($sentencia->execute()){

@@ -761,6 +761,22 @@ CREATE TABLE `permisos` (
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+CREATE TABLE `roles_permisos` (
+  `id_rol_permiso` int(11) NOT NULL AUTO_INCRTEMENT PRIMARY KEY,
+
+
+  `rol_id`  int(11) NOT NULL,
+  `permiso_id`int(11) NOT NULL,
+
+  `fyh_creacion` datetime  NULL,
+  `fyh_actualizacion` datetime  NULL,
+  `estado` varchar(11),
+
+  FOREIGN KEY (rol_id) REFERENCES roles (id_rol) on delete no action on update cascade,
+  FOREIGN KEY (permiso_id) REFERENCES permisos (id_permoso) on delete no action on update cascade,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indices de la tabla `administrativos`
 --

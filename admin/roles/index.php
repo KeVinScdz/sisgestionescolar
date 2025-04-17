@@ -3,6 +3,7 @@ include ('../../app/config.php');
 include ('../../admin/layout/parte1.php');
 include ('../../app/controllers/roles/listado_de_roles.php');
 include ('../../app/controllers/roles/listado_de_permisos.php');
+include ('../../app/controllers/roles/listado_de_roles_permisos.php');
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -87,6 +88,7 @@ include ('../../app/controllers/roles/listado_de_permisos.php');
                                                                               var url = "../../app/controllers/roles/create_roles_permisos.php";
                                                                                 $.get(url, {rol_id:a,permiso_id:b}, function (datos) {
                                                                                     $('#respuesta<?=$id_rol;?>').html(datos);
+                                                                                    $('#tabla<?=$id_rol;?>').css('display','none');
                                                                                     //alert("mando los datos")
                                                                                     Swal.fire({
                                                                                         position: "top-end",
@@ -98,11 +100,34 @@ include ('../../app/controllers/roles/listado_de_permisos.php');
                                                                                 });
                                                                             });
                                                                         </script>
-                                                                        <div id="respuesta<?=$id_rol;?>"></div>
                                                                     </div>
-                                                                    <div class="row">
-                                                                        <table>
-
+                                                                    <hr>
+                                                                    <div id="respuesta<?=$id_rol;?>"></div>
+                                                                    <div class="row" id= "tabla<?=$id_rol;?>">
+                                                                        <table class="table  table-bordered table-sm table-striped table-hover">
+                                                                            <tr>
+                                                                                <th style="text-aling: center;background-color: #dbcd59">Nro</th>
+                                                                                <th style="text-aling: center;background-color: #dbcd59">Rol</th>
+                                                                                <th style="text-aling: center;background-color: #dbcd59">Permiso</th>
+                                                                                <th style="text-aling: center;background-color: #dbcd59">Accion</th>
+                                                                            </tr>   
+                                                                            <?php
+                                                                            $contador = 0;
+                                                                            foreach ($roles_permisos as $roles_permiso) {
+                                                                                if ($id_rol == $roles_permiso['rol_id']) {
+                                                                                    $id_rol_permiso = $roles_permiso['id_rol_permiso'];
+                                                                                    $contador = $contador + 1; ?>
+                                                                                 
+                                                                                    <tr>
+                                                                                        <td><center><?= $contador; ?></center></td>
+                                                                                        <td><center><?= $roles_permiso['nombre_rol']; ?></center></td>
+                                                                                        <td><?= $roles_permiso['nombre_url']; ?></td>
+                                                                                        <td></td>
+                                                                                    </tr>
+                                                                                    <?php
+                                                                                }
+                                                                            }
+                                                                            ?>                                                                     
                                                                         </table>
                                                                     </div>
                                                                 </div>
