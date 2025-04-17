@@ -20,6 +20,11 @@ if(isset($_SESSION['sesion_email'])){
 
     }
 
+    echo $url = $_SERVER["REQUEST_URI"];
+    $conta = strlen($url);
+
+    $rest = substr($url, 18, $conta);
+
 }else{
     echo "el usuario no paso por el login";
     header('Location:'.APP_URL."/login");

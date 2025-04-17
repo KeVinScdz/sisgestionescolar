@@ -50,7 +50,33 @@ echo "Registro exitoso";
                         <td><center><?= $contador; ?></center></td>
                         <td><center><?= $roles_permiso['nombre_rol']; ?></center></td>
                         <td><?= $roles_permiso['nombre_url']; ?></td>
-                        <td></td>
+                        <td>
+                            <form action="<?=APP_URL;?>/app/controllers/roles/delete_rol_permiso.php" onclick="preguntar<?=$id_rol_permiso;?>(event)"
+                                 method="post" id="miFormulario<?=$id_rol_permiso;?>">
+                                  <input type="text" name="id_rol_permiso" value="<?=$id_rol_permiso;?>" hidden>
+                                   <button type="submit" class="btn btn-danger btn-sm" style=""><i class="bi bi-trash"></i></button>
+                            </form>
+                            <script>
+                                function preguntar<?=$id_rol_permiso;?>(event) {
+                                    event.preventDefault();
+                                    Swal.fire({
+                                        title: 'Eliminar registro',
+                                        text: '¿Desea eliminar este registro?',
+                                        icon: 'question',
+                                        showDenyButton: true,
+                                        confirmButtonText: 'Eliminar',
+                                        confirmButtonColor: '#a5161d',
+                                        denyButtonColor: '#270a0a',
+                                        denyButtonText: 'Cancelar',
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            var form = $('#miFormulario<?=$id_rol_permiso;?>');
+                                            form.submit();
+                                        }
+                                    });
+                                }
+                            </script>
+                        </td>
                     </tr>
                     <?php
                 }
