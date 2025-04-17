@@ -39,8 +39,8 @@ if(isset($_SESSION['sesion_email'])){
        if ($id_rol_sesion_usuario == $roles_permiso['rol_id']) {
             
             //echo $roles_permiso['url'];
-            if($rest == $roles_permiso['url']){
-               // echo "permiso autorizado - ";
+            if($rest == $roles_permiso['rol_id']){
+               //echo "permiso autorizado - ";
                 $contadorpermiso = $contadorpermiso + 1;
 
             }else{
@@ -51,18 +51,32 @@ if(isset($_SESSION['sesion_email'])){
 
     }
     if ($contadorpermiso>0) {
-        //echo "ruta autorizada";
+        echo "ruta autorizada";
+        ?>
+        <!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="es">
+<head>
+        <?php
     }else {
-    // echo"ruta no autorizada";
-    
+     echo"ruta no autorizada";
+     //header('Location:'.APP_URL."/admin/no-autorizado.php");
+
     }
 
+    
 
-}else{
+
+} else {
     echo "el usuario no paso por el login";
     header('Location:'.APP_URL."/login");
-}
-?>
+    exit();
+ }
+ ?>
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
