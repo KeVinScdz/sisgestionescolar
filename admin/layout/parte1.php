@@ -13,6 +13,7 @@ if(isset($_SESSION['sesion_email'])){
     $datos_sesion_usuarios = $query_sesion->fetchAll(PDO::FETCH_ASSOC);
     foreach ($datos_sesion_usuarios as $datos_sesion_usuario) {
        $nombre_sesion_usuario = $datos_sesion_usuario['email'];
+       $id_rol_sesion_usuario = $datos_sesion_usuario['id_rol'];
        $rol_sesion_usuario = $datos_sesion_usuario['nombre_rol'];
        $nombres_sesion_usuario = $datos_sesion_usuario['nombres'];
        $apellidos_sesion_usuario = $datos_sesion_usuario['apellidos'];
@@ -20,10 +21,42 @@ if(isset($_SESSION['sesion_email'])){
 
     }
 
-    echo $url = $_SERVER["REQUEST_URI"];
+    $url = $_SERVER["PHP_SELF"];
     $conta = strlen($url);
-
     $rest = substr($url, 18, $conta);
+
+   
+    /** Created by PhpStorm. ... */
+    $sql_roles_permisos = "SELECT * FROM roles_permisos as rolper
+        INNER JOIN permisos as per ON per.id_permiso = rolper.permiso_id
+        INNER JOIN roles as rol ON rol.id_rol = rolper.rol_id
+        where rolper.estado = '1' ";
+    $query_roles_permisos = $pdo->prepare($sql_roles_permisos);
+    $query_roles_permisos->execute();
+    $roles_permisos = $query_roles_permisos->fetchAll( fetch_style: PDO::FETCH_ASSOC);
+    $contadorpermiso = 0;
+    foreach ($roles_permisos as  $roles_permiso) {
+       if ($id_rol_sesion_usuario == $roles_permiso['rol_id']) {
+            
+            //echo $roles_permiso['url'];
+            if($rest == $roles_permiso['url']){
+               // echo "permiso autorizado - ";
+                $contadorpermiso = $contadorpermiso + 1;
+
+            }else{
+               //echo"no autorizado";
+            }
+        }
+       
+
+    }
+    if ($contadorpermiso>0) {
+        echo "ruta autorizada";
+    }else {
+     echo"ruta no autorizada";
+    
+    }
+
 
 }else{
     echo "el usuario no paso por el login";
