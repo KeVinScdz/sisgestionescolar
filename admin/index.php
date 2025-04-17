@@ -37,7 +37,7 @@ include ('../app/controllers/estudiantes/listado_de_estudiantes.php');
                     <div class="col-md-6">
                       <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Datos del estudiante</h3>
+                            <h3 class="card-title">Datos del docente</h3>
                         </div>
                         <div class="card-body">
                         <table class="table table-sm table-hover table-striped table-bordered">

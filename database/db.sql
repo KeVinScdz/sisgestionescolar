@@ -308,6 +308,9 @@ CREATE TABLE kardexs (
 --usuario:camila@gmail.com
 --contraseña:0412
 
+--usuario DIRECTOR ACADEMICO
+--usuario:david@gmail.com CI	726251
+--contraseña:0412
 
 
 -- phpMyAdmin SQL Dump

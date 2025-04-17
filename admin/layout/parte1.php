@@ -51,9 +51,9 @@ if(isset($_SESSION['sesion_email'])){
 
     }
     if ($contadorpermiso>0) {
-        echo "ruta autorizada";
+        //echo "ruta autorizada";
     }else {
-     echo"ruta no autorizada";
+    // echo"ruta no autorizada";
     
     }
 
@@ -107,7 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="<?=APP_URL;?>/admin" class="nav-link"><?=APP_NAME;?></a>
+                <a href="<?=APP_URL;?>/admin" class="nav-link"><?=APP_NAME;?></a><?=$rol_sesion_usuario;?>
             </li>
         </ul>
 
@@ -182,219 +182,261 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
 
+                        <?php
+                        if ( ($rol_sesion_usuario=="ADMINISTRADOR")|| ($rol_sesion_usuario=="DIRECTOR ACADÉMICO") || ($rol_sesion_usuario=="DIRECTOR ADMINISTATIVO") ){ ?>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas"><i class="bi bi-gear"></i></i>
+                                    <p>
+                                        Configuraciones
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?=APP_URL;?>/admin/configuraciones" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Configurar</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                           <?php
+                        }
+                        ?>
 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas"><i class="bi bi-gear"></i></i>
-                            <p>
-                                Configuraciones
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?=APP_URL;?>/admin/configuraciones" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Configurar</p>
-                                </a>
+                        <?php
+                        if ( ($rol_sesion_usuario=="ADMINISTRADOR")|| ($rol_sesion_usuario=="DIRECTOR ACADÉMICO") ){ ?>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link active">
+                                        <i class="nav-icon fas"><i class="bi bi-bookshelf"></i></i>
+                                        <p>
+                                            Niveles
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="<?=APP_URL;?>/admin/niveles" class="nav-link active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Listado de niveles</p>
+                                            </a>
+                                        </li>
+                                    </ul>
                             </li>
-                        </ul>
-                    </li>
+                            <li class="nav-item">
+                                    <a href="#" class="nav-link active">
+                                        <i class="nav-icon fas"><i class="bi bi-bar-chart-steps"></i></i>
+                                        <p>
+                                            Grados
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="<?=APP_URL;?>/admin/grados" class="nav-link active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Listado de grados</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link active">
+                                        <i class="nav-icon fas"><i class="bi bi-book-half"></i></i>
+                                        <p>
+                                            Materias
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="<?=APP_URL;?>/admin/materias" class="nav-link active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Listado de materias</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            <?php
+                        }
+                        ?>
+                        <?php
+                        if ( ($rol_sesion_usuario=="ADMINISTRADOR") ){ ?>
+                           
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas"><i class="bi bi-bookmarks"></i></i>
+                                    <p>
+                                        Roles
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?=APP_URL;?>/admin/roles" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de roles</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?=APP_URL;?>/admin/roles/permisos.php" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de permisos</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas"><i class="bi bi-people-fill"></i></i>
+                                    <p>
+                                        Usuarios
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?=APP_URL;?>/admin/usuarios" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de usuarios</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                           
+                        <?php
+                        if ( ($rol_sesion_usuario=="ADMINISTRADOR")|| ($rol_sesion_usuario=="DIRECTOR ACADÉMICO") || ($rol_sesion_usuario=="DIRECTOR ADMINISTATIVO")|| ($rol_sesion_usuario=="SECRETARIA ") ){ ?>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas"><i class="bi bi-person-lines-fill"></i></i>
+                                    <p>
+                                        Administrativos
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?=APP_URL;?>/admin/administrativos" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de administrativos</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <?php
+                        }
+                        ?>
 
+                        <?php
+                        if ( ($rol_sesion_usuario=="ADMINISTRADOR")|| ($rol_sesion_usuario=="DIRECTOR ACADÉMICO") || ($rol_sesion_usuario=="SECRETARIA ") ){ ?>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas"><i class="bi bi-person-video3"></i></i>
+                                    <p>
+                                        Docentes
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?=APP_URL;?>/admin/docentes" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de docentes</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?=APP_URL;?>/admin/docentes/asignacion.php" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Asignacion de materias</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <?php
+                        }
+                        ?>
 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas"><i class="bi bi-bookshelf"></i></i>
-                            <p>
-                                Niveles
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
+                       <?php
+                        if ( ($rol_sesion_usuario=="ADMINISTRADOR") || ($rol_sesion_usuario=="DOCENTE") ){ ?>
                             <li class="nav-item">
-                                <a href="<?=APP_URL;?>/admin/niveles" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Listado de niveles</p>
+                                <a href="<?=APP_URL;?>/admin/kardex" class="nav-link active">
+                                    <i class="nav-icon fas"><i class="bi bi-clipboard-check"></i></i>
+                                    <p>
+                                        kardex
+                                    </p>
                                 </a>
                             </li>
-                        </ul>
-                    </li>
+                            <li class="nav-item">
+                                <a href="<?=APP_URL;?>/admin/calificaciones" class="nav-link active">
+                                    <i class="nav-icon fas"><i class="bi bi-check2-square"></i></i>
+                                    <p>
+                                        Calificaiones
+                                    </p>
+                                </a>
+                            </li>
+                           <?php
+                        }
+                        ?>
 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas"><i class="bi bi-bar-chart-steps"></i></i>
-                            <p>
-                                Grados
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
+                        <?php 
+                        if ( ($rol_sesion_usuario=="ADMINISTRADOR")|| ($rol_sesion_usuario=="DIRECTOR ACADÉMICO") || ($rol_sesion_usuario=="SECRETARIA ") || ($rol_sesion_usuario=="CONTADOR ") ){ ?>
                             <li class="nav-item">
-                                <a href="<?=APP_URL;?>/admin/grados" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Listado de grados</p>
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas"><i class="bi bi-person-video"></i></i>
+                                    <p>
+                                        Estudiantes
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                        <a href="<?=APP_URL;?>/admin/inscripciones" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Inscripciones</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?=APP_URL;?>/admin/estudiantes" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listado de estudiantes</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas"><i class="bi bi-book-half"></i></i>
-                            <p>
-                                Materias
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?=APP_URL;?>/admin/materias" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Listado de materias</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas"><i class="bi bi-bookmarks"></i></i>
-                            <p>
-                                Roles
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?=APP_URL;?>/admin/roles" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Listado de roles</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?=APP_URL;?>/admin/roles/permisos.php" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Listado de permisos</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                            <?php
+                        }
+                        ?>
 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas"><i class="bi bi-people-fill"></i></i>
-                            <p>
-                                Usuarios
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
+                        <?php 
+                        if ( ($rol_sesion_usuario=="ADMINISTRADOR")|| ($rol_sesion_usuario=="DIRECTOR ADMINISTRATIVO") || ($rol_sesion_usuario=="CONTADOR ") ){ ?>
                             <li class="nav-item">
-                                <a href="<?=APP_URL;?>/admin/usuarios" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Listado de usuarios</p>
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas"><i class="bi bi-cash-coin"></i></i>
+                                    <p>
+                                        Pagos
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?=APP_URL;?>/admin/pagos" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Realizar pago</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas"><i class="bi bi-person-lines-fill"></i></i>
-                            <p>
-                                Administrativos
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?=APP_URL;?>/admin/administrativos" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Listado de administrativos</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas"><i class="bi bi-person-video3"></i></i>
-                            <p>
-                                Docentes
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?=APP_URL;?>/admin/docentes" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Listado de docentes</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?=APP_URL;?>/admin/docentes/asignacion.php" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Asignacion de materias</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?=APP_URL;?>/admin/kardex" class="nav-link active">
-                            <i class="nav-icon fas"><i class="bi bi-clipboard-check"></i></i>
-                            <p>
-                                kardex
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?=APP_URL;?>/admin/calificaciones" class="nav-link active">
-                            <i class="nav-icon fas"><i class="bi bi-check2-square"></i></i>
-                            <p>
-                                Calificaiones
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas"><i class="bi bi-person-video"></i></i>
-                            <p>
-                                Estudiantes
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                                <a href="<?=APP_URL;?>/admin/inscripciones" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Inscripciones</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?=APP_URL;?>/admin/estudiantes" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Listado de estudiantes</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas"><i class="bi bi-cash-coin"></i></i>
-                            <p>
-                                Pagos
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?=APP_URL;?>/admin/pagos" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Realizar pago</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                            <?php
+                        }
+                        ?>
 
                     <li class="nav-item">
                         <a href="<?=APP_URL;?>/login/logout.php" class="nav-link" style="background-color: #eb2d14;color: black">
