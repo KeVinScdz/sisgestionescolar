@@ -91,23 +91,13 @@ include ('../app/controllers/estudiantes/listado_de_estudiantes.php');
                  </div>
             
             <?php
-            }
-            ?>
-            <!--Vista para el estudiante-->
-
-
-
-
-            <!--Vista para el docentes-->
-            <?php
-            if (trim($rol_sesion_usuario) == "DOCENTE") {
+            } else if if (trim($rol_sesion_usuario) == "DOCENTE") {
                 foreach ($docentes as $docente) {
                     if($email_sesion == $docente['email']){
                         $nombre_rol = $docente['nombre_rol'];
                         $profesion = $docente['profesion'];
                         $especialidad = $docente['especialidad'];
 
-                            
                     } 
                 } 
                 ?>
@@ -141,7 +131,27 @@ include ('../app/controllers/estudiantes/listado_de_estudiantes.php');
                     </div>
                  </div>
             <?php
+            } else {
+                $sql_datos = "SELECT * FROM usuarios as usu 
+                    INNER JOIN roles as rol ON rol.id_rol = usu.rol_id 
+                    INNER JOIN personas as per ON per.usuario_id = usu.id_usuario 
+                    where est.estado = '1' and usu.gmail = '$email_sesion' ";
+                $query_datos = $pdo->prepare($sql_datos);
+                $query_datos->execute();
+                $datos = $query_datos->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($datos as $dato) {
+                    echo $nombre = $dato['nombres'];
+                }
             }
+            ?>
+            <!--Vista para el estudiante-->
+
+
+
+
+            <!--Vista para el docentes-->
+            <?php
+            
             ?>
             <!--Vista para el docentes-->
 
