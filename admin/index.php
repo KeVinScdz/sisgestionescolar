@@ -91,7 +91,7 @@ include ('../app/controllers/estudiantes/listado_de_estudiantes.php');
                  </div>
             
             <?php
-            } else if if (trim($rol_sesion_usuario) == "DOCENTE") {
+            } else if (trim($rol_sesion_usuario) == "DOCENTE") {
                 foreach ($docentes as $docente) {
                     if($email_sesion == $docente['email']){
                         $nombre_rol = $docente['nombre_rol'];
