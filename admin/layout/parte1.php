@@ -11,15 +11,23 @@ if(isset($_SESSION['sesion_email'])){
     $query_sesion->execute();
 
     $datos_sesion_usuarios = $query_sesion->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($datos_sesion_usuarios as $datos_sesion_usuario) {
-       $nombre_sesion_usuario = $datos_sesion_usuario['email'];
-       $id_rol_sesion_usuario = $datos_sesion_usuario['id_rol'];
-       $rol_sesion_usuario = $datos_sesion_usuario['nombre_rol'];
-       $nombres_sesion_usuario = $datos_sesion_usuario['nombres'];
-       $apellidos_sesion_usuario = $datos_sesion_usuario['apellidos'];
-       $ci_sesion_usuario = $datos_sesion_usuario['ci'];
+    $id_rol_sesion_usuario = null;
 
+    foreach ($datos_sesion_usuarios as $datos_sesion_usuario) {
+        $nombre_sesion_usuario = $datos_sesion_usuario['email'];
+        $id_rol_sesion_usuario = $datos_sesion_usuario['id_rol'];
+        $rol_sesion_usuario = $datos_sesion_usuario['nombre_rol'];
+        $nombres_sesion_usuario = $datos_sesion_usuario['nombres'];
+        $apellidos_sesion_usuario = $datos_sesion_usuario['apellidos'];
+        $ci_sesion_usuario = $datos_sesion_usuario['ci'];
     }
+
+    // Verificar si $id_rol_sesion_usuario tiene un valor válido
+    if (is_null($id_rol_sesion_usuario)) {
+        echo "Error: No se pudo obtener el rol del usuario.";
+        exit();
+    }
+
 
     $url = $_SERVER["PHP_SELF"];
     $conta = strlen($url);
@@ -57,7 +65,7 @@ if(isset($_SESSION['sesion_email'])){
        
     }else {
      //echo"ruta no autorizada";
-     header('Location:'.APP_URL."/admin/no-autorizado.php");
+        header('Location:'.APP_URL."/admin/no-autorizado.php");
 
     }
 
@@ -395,7 +403,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         ?>
 
                         <?php 
-                        if ( ($rol_sesion_usuario=="ADMINISTRADOR")|| ($rol_sesion_usuario=="DIRECTOR ACADÉMICO") || ($rol_sesion_usuario=="SECRETARIA ") || ($rol_sesion_usuario=="CONTADOR ") ){ ?>
+                        if ( ($rol_sesion_usuario=="ADMINISTRADOR")|| ($rol_sesion_usuario=="DIRECTOR ACADÉMICO") || ($rol_sesion_usuario=="SECRETARIA") || ($rol_sesion_usuario=="CONTADOR") ){ ?>
                             <li class="nav-item">
                                 <a href="#" class="nav-link active">
                                     <i class="nav-icon fas"><i class="bi bi-person-video"></i></i>
@@ -424,7 +432,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         ?>
 
                         <?php 
-                        if ( ($rol_sesion_usuario=="ADMINISTRADOR")|| ($rol_sesion_usuario=="DIRECTOR ADMINISTRATIVO") || ($rol_sesion_usuario=="CONTADOR ") ){ ?>
+                        if ( ($rol_sesion_usuario=="ADMINISTRADOR")|| ($rol_sesion_usuario=="DIRECTOR ADMINISTRATIVO") || ($rol_sesion_usuario=="CONTADOR") ){ ?>
                             <li class="nav-item">
                                 <a href="#" class="nav-link active">
                                     <i class="nav-icon fas"><i class="bi bi-cash-coin"></i></i>

@@ -135,13 +135,36 @@ include ('../app/controllers/estudiantes/listado_de_estudiantes.php');
                 $sql_datos = "SELECT * FROM usuarios as usu 
                     INNER JOIN roles as rol ON rol.id_rol = usu.rol_id 
                     INNER JOIN personas as per ON per.usuario_id = usu.id_usuario 
-                    where est.estado = '1' and usu.gmail = '$email_sesion' ";
+                    where usu.estado = '1' and usu.email = '$email_sesion' ";
                 $query_datos = $pdo->prepare($sql_datos);
                 $query_datos->execute();
                 $datos = $query_datos->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($datos as $dato) {
-                    echo $nombre = $dato['nombres'];
+                    $nombre_rol = $dato['nombre_rol'];
                 }
+                ?>
+                    <div class="row">
+                    <div class="col-md-6">
+                      <div class="card card-outline card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Datos del usuario</h3>
+                        </div>
+                        <div class="card-body">
+                        <table class="table table-sm table-hover table-striped table-bordered">
+                              <tr>
+                                <td><b>Nombres y Apellidos:</b></td>
+                                <td><?=$nombres_sesion_usuario." ".$apellidos_sesion_usuario;?></td>
+                              </tr>
+                              <tr>
+                                <td><b>Rol:</b></td>
+                                <td><?=$nombre_rol;?></td>
+                              </tr>
+                            </table>
+                        </div>
+                      </div>     
+                    </div>
+                 </div>
+                <?php
             }
             ?>
             <!--Vista para el estudiante-->
