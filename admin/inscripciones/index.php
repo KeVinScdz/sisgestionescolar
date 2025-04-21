@@ -16,16 +16,25 @@ include ('../../admin/layout/parte1.php');
             <div class="row">
 
             <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-info"><i class="bi bi-person-video"></i></span>
+              <div class="info-box">
+                <span class="info-box-icon bg-info"><i class="bi bi-person-video"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Inscripciones</span>
+                  <a href="create.php" class="btn btn-primary btn-sm">Nuevo estudiante</a>
+                </div>
+              </div>
+            </div>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Inscripciones</span>
-                <a href="create.php" class="btn btn-primary btn-sm">Nuevo estudiante</a>
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-success"><i class="bi bi-person-plus"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Importar Estudiantes</span>
+                  <a href="importar" class="btn btn-success btn-sm">Importar</a>
+                </div>
               </div>
             </div>
           </div>
-            </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
