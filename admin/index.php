@@ -419,7 +419,7 @@ include('../app/controllers/estudiantes/reporte_estudiantes.php');
                                 foreach ($reportes_estudiantes as $reportes_estudiante) {
                                     $fecha = $reportes_estudiante['fyh_creacion'];
                                     $fecha = strtotime($fecha);
-                                    echo $mes = date('m', $fecha);
+                                    $mes = date('m', $fecha);
                                     if ($mes == "01") $enero = $enero + 1;
                                     if ($mes == "02") $febrero = $febrero + 1;
                                     if ($mes == "03") $marzo = $marzo + 1;
@@ -455,6 +455,49 @@ include('../app/controllers/estudiantes/reporte_estudiantes.php');
                             </script>
                         </div>
                     </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card card-outline card-primary" style="text-align: center;">
+                                <div class="card-header">
+                                    <h3 class="card-title">Estudiantes inscritos</h3>
+                                </div>
+                                <div class="card-body">
+                                    <input type="text" class="knob" value="<?=$contador_estudiantes;?>" data-min="0" data-max="500" data-readonly="true" data-thickness="0.1" data-width="150" data height="150" data-fgColor="#2dc014" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card card-outline card-primary" style="text-align: center;">
+                                <div class="card-header">
+                                    <h3 class="card-title">Personal docente</h3>
+                                </div>
+                                <div class="card-body">
+                                    <input type="text" class="knob" value="<?=$contador_docentes;?>" data-min="0" data-max="30" data-readonly="true" data-thickness="0.1" data-width="150" data height="150" data-fgColor="#860092" disabled>7
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card card-outline card-primary" style="text-align: center;">
+                                <div class="card-header">
+                                    <h3 class="card-title">Usuarios registrados</h3>
+                                </div>
+                                <div class="card-body">
+                                    <input type="text" class="knob" value="<?=$contador_usuarios;?>" data-min="0" data-max="<?=$contador_usuarios;?>" data-readonly="true" data-thickness="0.1" data-width="150" data height="150" data-fgColor="#ff0000" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card card-outline card-primary" style="text-align: center;">
+                                <div class="card-header">
+                                    <h3 class="card-title">Personal administrativo</h3>
+                                </div>
+                                <div class="card-body">
+                                    <input type="text" class="knob" value="<?=$contador_administrativos;?>" data-min="0" data-max="<?=$contador_administrativos;?>" data-readonly="true" data-thickness="0.1" data-width="150" data height="150" data-fgColor="#000f99" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                  <?php
             }
             ?>
@@ -474,3 +517,55 @@ include ('../admin/layout/parte2.php');
 include ('../layout/mensajes.php');
 
 ?>
+
+<script>
+    $(function () {
+        $('.knob').knob({
+            draw: function () {
+                if (this.$.data('skin') == 'tron') {
+                    var a   = this.angle(this.cv)  // Angle
+                        ,
+                        sa  = this.startAngle          // Previous start angle
+                        ,
+                        sat = this.startAngle         // Start angle
+                        ,
+                        ea                            // Previous end angle
+                        ,
+                        eat = sat + a                 // End angle
+                        ,
+                        r   = true
+
+                    this.g.lineWidth = this.lineWidth
+
+                    this.o.cursor
+                    && (sat = eat - 0.3)
+                    && (eat = eat + 0.3)
+
+                    if (this.o.displayPrevious) {
+                        ea = this.startAngle + this.angle(this.value)
+                        this.o.cursor
+                        && (sa = ea - 0.3)
+                        && (ea = ea + 0.3)
+                        this.g.beginPath()
+                        this.g.strokeStyle = this.previousColor
+                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false)
+                        this.g.stroke()
+                    }
+
+                    this.g.beginPath()
+                    this.g.strokeStyle = r ? this.o.fgColor : this.fgColor
+                    this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false)
+                    this.g.stroke()
+
+                    this.g.lineWidth = 2
+                    this.g.beginPath()
+                    this.g.strokeStyle = this.o.fgColor
+                    this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false)
+                    this.g.stroke()
+
+                    return false
+                }
+            }
+        })
+    });
+</script>

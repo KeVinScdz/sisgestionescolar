@@ -42,5 +42,6 @@
 
 <!-- AdminLTE App -->
 <script src="<?=APP_URL;?>/public/dist/js/adminlte.min.js"></script>
+<script src="<?=APP_URL;?>/public/plugins/jquery-knob/jquery.knob.min.js"></script>
 </body>
 </html>
