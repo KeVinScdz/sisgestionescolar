@@ -9,7 +9,7 @@ include ('../app/controllers/materias/listado_de_materias.php');
 include ('../app/controllers/administrativos/listado_de_administrativos.php');
 include ('../app/controllers/docentes/listado_de_docentes.php');
 include ('../app/controllers/estudiantes/listado_de_estudiantes.php');
-include('../app/controllers/estudiantes/reporte_estudiantes_por_grados.php');
+include('../app/controllers/estudiantes/reporte_estudiantes.php');
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -413,9 +413,31 @@ include('../app/controllers/estudiantes/reporte_estudiantes_por_grados.php');
                                     </div>
                                 </div>
                             </div>
+                            <?php
+                            $enero = 0; $febrero = 0; $marzo = 0; $abril = 0; $mayo = 0; $junio = 0; $julio = 0; $agosto = 0; $septiembre = 0; $octubre = 0; $noviembre = 0; $diciembre = 0;
+
+                                foreach ($reportes_estudiantes as $reportes_estudiante) {
+                                    $fecha = $reportes_estudiante['fyh_creacion'];
+                                    $fecha = strtotime($fecha);
+                                    echo $mes = date('m', $fecha);
+                                    if ($mes == "01") $enero = $enero + 1;
+                                    if ($mes == "02") $febrero = $febrero + 1;
+                                    if ($mes == "03") $marzo = $marzo + 1;
+                                    if ($mes == "04") $abril = $abril + 1;
+                                    if ($mes == "05") $mayo = $mayo + 1;
+                                    if ($mes == "06") $junio = $junio + 1;
+                                    if ($mes == "07") $julio = $julio + 1;
+                                    if ($mes == "08") $agosto = $agosto + 1;
+                                    if ($mes == "09") $septiembre = $septiembre + 1;
+                                    if ($mes == "10") $octubre = $octubre + 1;
+                                    if ($mes == "11") $noviembre = $noviembre + 1;
+                                    if ($mes == "12") $diciembre = $diciembre + 1;
+                                }
+                                $reporte_meses = $enero.",".$febrero.",".$marzo.",".$abril.",".$mayo.",".$junio.",".$julio.",".$agosto.",".$septiembre.",".$octubre.",".$noviembre.",".$diciembre;
+                            ?>
                             <script>
                                 var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-                                var datos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+                                var datos = [<?=$reporte_meses;?>];
                                 const ctx2 = document.getElementById('myChart2');
                                 new Chart(ctx2, {
                                     type: 'bar',
