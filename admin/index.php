@@ -352,6 +352,71 @@ include ('../app/controllers/estudiantes/listado_de_estudiantes.php');
                     </div>
                 </div>
                 </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-outline card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Datos de los estudiantes</h3>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            var grados = ['INI - 1', 'PRI - 1'];
+                            var datos = [1, 2];
+                            const ctx = document.getElementById('myChart');
+                            new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: grados,
+                                    datasets: [{
+                                        label: 'Estudiantes por grados',
+                                        data: datos,
+                                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        borderWidth: 1
+                                    }]
+                                }
+                            })
+                        </script>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-outline card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Datos de los estudiantes</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div>
+                                        <canvas id="myChart2"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+                                var datos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+                                const ctx2 = document.getElementById('myChart2');
+                                new Chart(ctx2, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: meses,
+                                        datasets: [{
+                                            label: 'Estudiantes por meses',
+                                            data: datos,
+                                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                            borderColor: 'rgba(75, 192, 192, 1)',
+                                            borderWidth: 1
+                                        }]
+                                    }
+                                })
+                            </script>
+                        </div>
+                    </div>
                  <?php
             }
             ?>
