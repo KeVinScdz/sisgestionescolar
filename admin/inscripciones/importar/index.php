@@ -87,6 +87,9 @@ include ('../../../admin/layout/parte1.php');
                             <p id="respuesta">
 
                             </p>
+                            <p id="contador">
+
+                            </p>
                         </div>
                     </div>  
                 </div>
@@ -97,6 +100,44 @@ include ('../../../admin/layout/parte1.php');
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+    $('#btn_lectura').click(function() {
+        valores=new Array();
+        var contador = 0;
+        $('#my_file_output tr').each(function () {
+            var d1 = $(this).find('td').eq(0).html();
+            var d2 = $(this).find('td').eq(1).html();
+            var d3 = $(this).find('td').eq(2).html();
+            var d4 = $(this).find('td').eq(3).html();
+            var d5 = $(this).find('td').eq(4).html();
+            var d6 = $(this).find('td').eq(5).html();
+            var d7 = $(this).find('td').eq(6).html();
+            var d8 = $(this).find('td').eq(7).html();
+            var d9 = $(this).find('td').eq(8).html();
+            var d10 = $(this).find('td').eq(9).html();
+            var d11 = $(this).find('td').eq(10).html();
+            var d12 = $(this).find('td').eq(11).html();
+            var d13 = $(this).find('td').eq(12).html();
+            var d14 = $(this).find('td').eq(13).html();
+            var d15 = $(this).find('td').eq(14).html();
+            var d16 = $(this).find('td').eq(15).html();
+            var d17 = $(this).find('td').eq(16).html();
+            var d18 = $(this).find('td').eq(17).html();
+
+            valor=new Array(d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18);
+            valores.push(valor);
+            console.log(valor);
+            //alert(valor);
+            $.post('insertar.php', {d1:d1, d2:d2, d3:d3, d4:d4, d5:d5, d6:d6, d7:d7, d8:d8, d9:d9, d10:d10, d11:d11, d12:d12, d13:d13, d14:d14, d15:d15, d16:d16, d17:d17, d18:d18}, function (datos) {
+                $('#respuesta').html(datos);
+                contador = contador + 1;
+                $('#contador').html("Se han registrado " + contador + " estudiantes en la base de datos.");
+            });
+        })
+        //alert("jelou");
+    })
+</script>
 
 <?php
 
