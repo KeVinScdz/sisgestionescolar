@@ -9,6 +9,7 @@ include ('../app/controllers/materias/listado_de_materias.php');
 include ('../app/controllers/administrativos/listado_de_administrativos.php');
 include ('../app/controllers/docentes/listado_de_docentes.php');
 include ('../app/controllers/estudiantes/listado_de_estudiantes.php');
+include('../app/controllers/estudiantes/reporte_estudiantes_por_grados.php');
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -367,9 +368,24 @@ include ('../app/controllers/estudiantes/listado_de_estudiantes.php');
                                 </div>
                             </div>
                         </div>
+                        <?php
+                        $contador = 0;
+                        $contador_inicial1 = 0;
+                        $contador_primaria1 = 0;
+
+                        foreach ($reportes_estudiantes as $reporte_estudiante) {
+                            if ($reporte_estudiante['grado_id'] == 1) {
+                                $contador_inicial1 = $contador_inicial1 + 1;
+                            }
+                            if ($reporte_estudiante['grado_id'] == 2) {
+                                $contador_primaria1 = $contador_primaria1 + 1;
+                            }
+                        }
+                        $datos_reporte_estudiantes = $contador_inicial1.",".$contador_primaria1;
+                        ?>
                         <script>
                             var grados = ['INI - 1', 'PRI - 1'];
-                            var datos = [1, 2];
+                            var datos = [<?=$datos_reporte_estudiantes;?>];
                             const ctx = document.getElementById('myChart');
                             new Chart(ctx, {
                                 type: 'line',
