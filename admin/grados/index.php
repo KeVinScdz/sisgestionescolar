@@ -53,7 +53,7 @@ include ('../../app/controllers/grados/listado_de_grados.php');
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="show.php?id=<?=$id_grado;?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
                                                 <a href="edit.php?id=<?=$id_grado;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
-                                            <!--<form action="<?=APP_URL;?>/app/controllers/grados/delete.php" onclick="preguntar<?=$id_grado;?>(event)" method="post" id="miFormulario<?=$id_grado;?>">
+                                            <form action="<?=APP_URL;?>/app/controllers/grados/delete.php" onclick="preguntar<?=$id_grado;?>(event)" method="post" id="miFormulario<?=$id_grado;?>">
                                                     <input type="text" name="id_grado" value="<?=$id_grado;?>" hidden>
                                                     <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 0px 5px 5px 0px"><i class="bi bi-trash"></i></button>
                                                 </form>
@@ -77,7 +77,6 @@ include ('../../app/controllers/grados/listado_de_grados.php');
                                                         });
                                                     }
                                                 </script>
-                                -->
                                             </div>
                                         </td>
                                     </tr>
