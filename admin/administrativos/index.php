@@ -64,8 +64,8 @@ include ('../../app/controllers/administrativos/listado_de_administrativos.php')
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="show.php?id=<?=$id_administrativo;?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
                                                 <a href="edit.php?id=<?=$id_administrativo;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
-                                               <!--<form action="<?=APP_URL;?>/app/controllers/usuarios/delete.php" onclick="preguntar<?=$id_administrativo;?>(event)" method="post" id="miFormulario<?=$id_administrativo;?>">
-                                                    <input type="text" name="id_usuario" value="<?=$id_administrativo;?>" hidden>
+                                               <form action="<?=APP_URL;?>/app/controllers/administrativos/delete.php" onclick="preguntar<?=$id_administrativo;?>(event)" method="post" id="miFormulario<?=$id_administrativo;?>">
+                                                    <input type="text" name="id_administrativo" value="<?=$id_administrativo;?>" hidden>
                                                     <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 0px 5px 5px 0px"><i class="bi bi-trash"></i></button>
                                                 </form>
                                                 <script>
@@ -88,7 +88,6 @@ include ('../../app/controllers/administrativos/listado_de_administrativos.php')
                                                         });
                                                     }
                                                 </script>
-                                -->
                                             </div>
                                         </td>
                                     </tr>
