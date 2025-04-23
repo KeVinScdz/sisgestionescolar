@@ -38,7 +38,7 @@ include('../app/controllers/estudiantes/reporte_estudiantes.php');
                     <div class="col-md-6">
                       <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Datos del docente</h3>
+                            <h3 class="card-title">Datos del estudiante</h3>
                         </div>
                         <div class="card-body">
                         <table class="table table-sm table-hover table-striped table-bordered">
@@ -84,7 +84,7 @@ include('../app/controllers/estudiantes/reporte_estudiantes.php');
                     <div class="info-box">
                         <span class="info-box-icon bg-info"><i class="bi bi-calendar-range"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text"><b>Calificaiones</b></span>
+                            <span class="info-box-text"><b>Calificaciones</b></span>
                             <a href="<?=APP_URL;?>/admin/calificaciones/reporte_estudiante.php?id_estudiante=<?=$id_estudiante?>" class="btn btn-info btn-sm">Ingresar</a>
                         </div>
                     </div>
