@@ -16,7 +16,7 @@ include ('../../admin/layout/parte1.php');
             <br>
             <div class="row">
 
-                <div class="col-md-4 col-sm-6 col-12">
+                <!-- <div class="col-md-4 col-sm-6 col-12">
                     <div class="info-box">
                         <span class="info-box-icon bg-primary"><i class="bi bi-hospital"></i></span>
                         <div class="info-box-content">
@@ -24,7 +24,7 @@ include ('../../admin/layout/parte1.php');
                             <a href="institucion" class="btn btn-primary btn-sm">Configurar</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="col-md-4 col-sm-6 col-12">
                     <div class="info-box">
